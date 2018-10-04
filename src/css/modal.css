@@ -1,0 +1,128 @@
+body .modal {
+    overflow: hidden;
+}
+
+body .modal .modal-dialog {
+    height: 500px;
+    margin-top: 0;
+    margin-bottom: 0;
+    top: 12.5%;
+}
+
+.modal .modal-dialog .modal-content {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    min-height: 50%;
+    background-color: rgba(255,255,255,.9);
+    border-radius: 10px;
+    background-image: url(../images/vacation.png);
+    background-repeat: space;
+}
+
+.modal .modal-content .modal-header {
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+.modal-content .modal-body .dias_disponibles {
+    max-width: 600px;
+    text-align: left;
+    font-size: 18px;
+    font-family: 'Open Sans';
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.modal-content .modal-body .dias_disponibles span {
+    margin-right: 30px;
+}
+
+.modal-content .modal-body form {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.modal-body form .input-container {
+    display: inline-block;
+}
+
+.modal-body form .input-container.left {
+    margin-right: 10px;
+}
+
+.modal-body form .input-container.right {
+    margin-left: 10px;
+}
+
+.modal-body form .input-container label {
+    font-size: 18px;
+    font-family: 'Open Sans';
+}
+
+.modal-body form input.my-form-control {
+    box-shadow: 2px 1px 0px 1px rgba(72,70,70, .5);
+    background-color: rgba(255,255,255,.8);
+    color: black;
+    padding: 10px;
+}
+
+.modal-body form .uib-datepicker-popup {
+    width: 300px;
+    box-shadow: 2px 1px 0px 1px rgba(72,70,70, .5);
+    background-color: rgb(255,255,255);
+}
+
+.modal-body form .uib-datepicker-popup .uib-daypicker:focus {
+    outline: none;
+}
+
+.modal-body form .uib-datepicker-popup table {
+    margin: 0 auto;
+}
+
+.modal-body form .uib-datepicker-popup .glyphicon {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.modal-body form .uib-datepicker-popup .glyphicon.glyphicon-chevron-left:before {
+    content: '\f053';
+}
+
+.modal-body form .uib-datepicker-popup .glyphicon.glyphicon-chevron-right:before {
+    content: '\f054';
+}
+.modal-content .modal-footer {
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.modal-footer button.my-button {
+    display: inline-block;
+}
+
+.modal-footer button.my-button:first-child {
+    margin-right: 10px;
+}
+
+.modal-footer button.my-button:last-child {
+    margin-left: 10px;
+}
+
+@media (max-width: 1400px) {
+    .modal .modal-dialog .modal-content {
+        left: 15%;
+    }
+}

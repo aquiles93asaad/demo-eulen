@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Solicitar Vacaciones</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form>
+        <div class="dias_disponibles"><span>Días de vacaciones disponibles: </span> {{variables.loggedUser.dias_disponibles}}</div>
+        <div class="input-container">
+            <label for="fecha_desde">Desde</label>
+            <input type="text" name="fecha_desde" class="no-appearance border-box my-form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="solicitud.F_DESDE.value" is-open="popup1.opened"
+                datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" ng-click="open1()" />
+        </div>
+        <div class="input-container">
+            <label for="fecha_hasta">Hasta</label>
+            <input type="text" name="fecha_hasta" class="no-appearance border-box my-form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="solicitud.F_HASTA.value" is-open="popup2.opened"
+                datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" ng-click="open2()" />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="my-button no-appearance border-box my-form-control" type="button" ng-click="solicitar()">Solicitar</button>
+    <button class="my-button no-appearance border-box my-form-control " type="button" ng-click="cancelModal()">Cancelar</button>
+</div>
