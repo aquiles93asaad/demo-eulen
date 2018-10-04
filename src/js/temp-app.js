@@ -36,7 +36,7 @@ angular.module('EulenApp', [
             url: '/',
             views: {
                 'application@': {
-                    templateUrl: '/templates/home.tpl',
+                    templateUrl: '/templates/home.html',
                     controller: 'AppController'
                 }
             }
