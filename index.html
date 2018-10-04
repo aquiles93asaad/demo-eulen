@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Grupo EULEN</title>
+        <link rel="icon" type="image/x-icon" href="https://www.eulen.com/es/wp-content/themes/grupoeulen/images/favicon.ico" sizes="16x16" />
+        <link rel="icon" type="image/x-icon" href="https://www.eulen.com/es/wp-content/themes/grupoeulen/images/favicon_32x32.ico" sizes="32x32" />
+
         
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
@@ -18,80 +21,46 @@
     </head>
 
     <body ng-app="EulenApp">
+        <div class="page">
+            <header class="container">
+                <div class="site-branding">
+                    <a href="" itemprop="url" title="Grupo Eulen">
+                        <img src="https://www.eulen.com/es/wp-content/themes/grupoeulen/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
+                    </a>
+                </div>
+            </header>
 
-        <div id="fullscreen" class="application-owrap">
-            <div ui-view="application" class="application"></div>
+            <div ui-view="application" class="container"></div>
+
+            <footer class="footer">
+                <div class="container footer-iwrap">
+                    <div class="site-info">
+                        <img src="https://www.eulen.com/es/wp-content/themes/grupoeulen/images/logo-footer.png" width="96"
+                            height="143" alt='Logo Grupo Eulen' />
+                    </div>
+                </div>
+            </footer>
         </div>
 
         <!-- scripts from node_modules -->
         <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
         <script type="text/javascript" src="node_modules/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+        <script type="text/javascript" src="node_modules/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+        <script type="text/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-aria/angular-aria.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-messages/angular-messages.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-touch/angular-touch.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-material/angular-material.min.js"></script>
+        <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+        <script type="text/javascript" src="node_modules/angular-moment/angular-moment.min.js"></script>
 
-        <!-- my scripts -->
-        <script type="text/javascript" src="src/js/angular_locale_es-ve.js"></script>
-        <script type="text/javascript" src="src/js/app.js"></script>
-        <script type="text/javascript" src="src/js/puente.js"></script>
+        <!-- app -->
+        <script type="text/javascript" src="src/js/temp-app.js"></script>
+
+        <!-- controllers -->
+        <script type="text/javascript" src="src/js/controllers/AppController.js"></script>
     </body>
-
-    <body class="home page-template page-template-template-inicio page-template-template-inicio-php page page-id-2 cookies-not-set group-blog es">
-
-
-        <div id="page" class="hfeed site clear">
-            <header id="masthead" class="site-header" role="banner">
-                <div class="site-branding" itemscope>
-                    <a href="" itemprop="url" title="Grupo Eulen"><img src="https://www.eulen.com/es/wp-content/themes/grupoeulen/images/logo_menu2x.png"
-                            width="190" alt="Grupo Eulen" itemprop="logo" /></a>
-                </div>
-
-
-                <a href="https://www.eulen.com/es/contacto/" class="boton-contacto boton-contacto--movil" title="Contacto"
-                    onClick="ga('send', 'event', 'contacto', 'boton-cabecera', 'espanol');">Contacto</a>
-
-                <button class="menu-toggle" onclick="ga('send', 'event', 'Botón', 'Contacto menú corporativo');">Menu</button>
-
-                <nav id="site-navigation" class="main-navigation clear" role="navigation">
-                    <div class="menu-menu-principal-container">
-                        <ul id="menu-menu-principal" class="menu">
-                            <li id="menu-item-6844" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6844 "><a
-                                    href="">Menu 1</a></li>
-                            <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a
-                                    href="">Menu 2</a></li>
-                            <li id="menu-item-17" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17"><a
-                                    href="">Menu 3</a></li>
-                            <li id="menu-item-18" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18"><a
-                                    href="">Menu 4</a></li>
-                        </ul>
-                    </div>
-                </nav><!-- #site-navigation -->
-
-            </header><!-- #masthead -->
-            <!--formulario-->
-
-
-
-            <!--#formulario-->
-
-
-        </div><!-- #page -->
-
-
-        <footer id="colophon" class="site-footer" role="contentinfo">
-            <div class="contenedor site-footer__desktop clear">
-                <div class="site-info">
-                    <img src="https://www.eulen.com/es/wp-content/themes/grupoeulen/images/logo-footer.png" width="96"
-                        height="143" alt='Logo Grupo Eulen' />
-                </div><!-- .site-info -->
-            </div><!-- /.contenido -->
-        </footer><!-- #colophon -->
-
-    </body>
-
 </html>
