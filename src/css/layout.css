@@ -20,6 +20,7 @@ body .page .site-branding img {
 
 body .page .content-container {
     padding: 50px 0;
+    position: relative;
 }
 
 body .footer {
