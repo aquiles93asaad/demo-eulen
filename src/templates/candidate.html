@@ -19,7 +19,7 @@
         </div>
 
         <div layout="row">
-            <md-input-container class="md-block"  flex="20">
+            <md-input-container class="md-block" flex=20>
                 <label>Tipo Documento</label>
                 <md-select ng-model="candidate.D_TIPO_DOCUMENTO" id="D_TIPO_DOCUMENTO" name="D_TIPO_DOCUMENTO" required>
                     <md-option value="DNI">DNI</md-option>
@@ -34,15 +34,44 @@
 
             <md-input-container class="md-block" flex>
                 <label>Numero seguridad social</label>
-                <input ng-model="candidate.N_SEGURIDAD_SOCIALD" id="N_SEGURIDAD_SOCIAL" name="N_SEGURIDAD_SOCIAL"
-                    required>
+                <input ng-model="candidate.N_SEGURIDAD_SOCIALD" id="N_SEGURIDAD_SOCIAL" name="N_SEGURIDAD_SOCIAL">
             </md-input-container>
         </div>
 
-        <div>
+        <div layout="row">
             <md-input-container class="md-block" flex>
-                <label></label>
-                <md-select ng-model="candidate.D_PAIS" id="D_PAÍS" name="D_PAÍS" required></md-select>
+                <label>Pais</label>
+                <md-select ng-model="candidate.D_PAIS" id="D_PAIS" name="D_PAIS" required>
+                    <md-option ng-value="country" ng-repeat="country in countries">{{country}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Provincia</label>
+                <input ng-model="candidate.D_PROVINCIA" id="D_PROVINCIA" name="D_PROVINCIA" required>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Localidad</label>
+                <input ng-model="candidate.D_LOCALIDAD" id="D_LOCALIDAD" name="D_LOCALIDAD" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <md-input-container class="md-block" flex=80>
+                <label>Domicilio</label>
+                <input ng-model="candidate.D_DOMICILIO" id="D_DOMICILIO" name="D_DOMICILIO" required>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+                <label>Codigo Postal</label>
+                <input ng-model="candidate.N_CP" id="N_CP" name="N_CP" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <md-input-container class="md-block" flex>
+                <label>E-mail</label>
+                <input ng-model="candidate.D_MAIL" id="D_MAIL" name="D_MAIL" required>
             </md-input-container>
         </div>
 
