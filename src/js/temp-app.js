@@ -41,6 +41,19 @@ angular.module('EulenApp', [
                 }
             }
         })
+        /* -------
+            Candidato
+         ---------------------- */
+
+         $stateProvider.state('candidate', {
+            url: '/candidato',
+            views: {
+                'application@': {
+                    templateUrl: 'src/templates/candidate.html',
+                    controller: 'CandidateController'
+                }
+            }
+        })
 
         $urlRouterProvider.otherwise('/home');
     }])
