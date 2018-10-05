@@ -1,0 +1,50 @@
+<div layout="column" ng-cloak>
+    <form>
+
+        <div layout="row">
+            <md-input-container class="md-block" flex>
+                <label>Apellido</label>
+                <input ng-model="candidate.D_APELLIDO" id="D_APELLIDO" name="D_APELLIDO" required>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Segundo Apellido</label>
+                <input ng-model="candidate.D_SEGUNDO_APELLIDO" id="D_SEGUNDO_APELLIDO" name="D_SEGUNDO_APELLIDO">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Nombre</label>
+                <input ng-model="candidate.D_NOMBRE" id="D_NOMBRE" name="D_NOMBRE" required>
+            </md-input-container>
+        </div>
+
+        <div layout="row">
+            <md-input-container class="md-block"  flex="20">
+                <label>Tipo Documento</label>
+                <md-select ng-model="candidate.D_TIPO_DOCUMENTO" id="D_TIPO_DOCUMENTO" name="D_TIPO_DOCUMENTO" required>
+                    <md-option value="DNI">DNI</md-option>
+                    <md-option value="PASAPORTE">PASAPORTE</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Numero identidad</label>
+                <input ng-model="candidate.N_IDENTIDAD" id="N_IDENTIDAD" name="N_IDENTIDAD" required>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Numero seguridad social</label>
+                <input ng-model="candidate.N_SEGURIDAD_SOCIALD" id="N_SEGURIDAD_SOCIAL" name="N_SEGURIDAD_SOCIAL"
+                    required>
+            </md-input-container>
+        </div>
+
+        <div>
+            <md-input-container class="md-block" flex>
+                <label></label>
+                <md-select ng-model="candidate.D_PAÍS" id="D_PAÍS" name="D_PAÍS" required></md-select>
+            </md-input-container>
+        </div>
+
+    </form>
+</div>
