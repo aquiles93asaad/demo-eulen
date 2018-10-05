@@ -5,8 +5,8 @@ angular.module('EulenApp', [
     'ui.bootstrap',
     'ngMessages',
     'ngAnimate',
-    'ngTouch',
-    'angularMoment'
+    'angularMoment',
+    'ngMaterial'
 ])
 
 /* -------
@@ -29,20 +29,20 @@ angular.module('EulenApp', [
         })
 
         /* -------
-            SignIn
+            Homepage
          ---------------------- */
 
-        $stateProvider.state('signin', {
-            url: '/',
+        $stateProvider.state('home', {
+            url: '/home',
             views: {
                 'application@': {
-                    templateUrl: '/templates/home.html',
+                    templateUrl: 'src/templates/home.html',
                     controller: 'AppController'
                 }
             }
         })
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/home');
     }])
 
 /* -------

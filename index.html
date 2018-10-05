@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="es-ES" prefix="og: http://ogp.me/ns#">
+<html>
 
     <head>
         <meta charset="UTF-8">
@@ -8,21 +8,19 @@
         <title>Grupo EULEN</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16" />
         <link rel="icon" type="image/x-icon" href="favicon_32x32.ico" sizes="32x32" />
-
         
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+        <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
 
-        <link rel="stylesheet" href="src/css/index.css">
-        <link rel="stylesheet" href="src/css/header.css">
+        <link rel="stylesheet" href="src/css/layout.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
 
     </head>
 
     <body ng-app="EulenApp">
         <div class="page">
-            <header class="container">
+            <header class="container" id="header">
                 <div class="site-branding">
                     <a href="" itemprop="url" title="Grupo Eulen">
                         <img src="src/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
@@ -30,9 +28,9 @@
                 </div>
             </header>
 
-            <div ui-view="application" class="container"></div>
+            <div ui-view="application" class="container content-container" id="container"></div>
 
-            <footer class="footer">
+            <footer class="footer" id="footer">
                 <div class="container footer-iwrap">
                     <div class="site-info">
                         <img src="src/images/logo-footer.png" width="96"
