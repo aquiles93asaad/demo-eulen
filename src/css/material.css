@@ -1,0 +1,10 @@
+.md-datepicker-input-container {
+    width: 75%;
+}
+
+.material-button.md-button.md-raised {
+    background-color: #0165ac !important;
+    color: white;
+    text-transform: capitalize;
+    min-width: 150px;
+}
