@@ -1,6 +1,6 @@
 <div layout="column" ng-cloak>
     <form>
-        <div>
+        <!-- <div ng-show="variables.step == 1">
             <div layout="row">
                 <md-input-container class="md-block" flex="30">
                     <label>Apellido</label>
@@ -28,12 +28,12 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" flex>
-                    <label>Numero identidad</label>
+                    <label>Número identidad</label>
                     <input ng-model="candidate.N_IDENTIDAD" id="N_IDENTIDAD" name="N_IDENTIDAD" required>
                 </md-input-container>
 
                 <md-input-container class="md-block" flex>
-                    <label>Numero seguridad social</label>
+                    <label>Número seguridad social</label>
                     <input ng-model="candidate.N_SEGURIDAD_SOCIALD" id="N_SEGURIDAD_SOCIAL" name="N_SEGURIDAD_SOCIAL">
                 </md-input-container>
             </div>
@@ -42,9 +42,6 @@
                 <md-input-container class="md-block" flex>
                     <label>Pais</label>
                     <input ng-model="candidate.D_PAIS" id="D_PAIS" name="D_PAIS" required>
-                    <!-- <md-select ng-model="candidate.D_PAIS" id="D_PAIS" name="D_PAIS" required>
-                        <md-option ng-value="country" ng-repeat="country in countries">{{country}}</md-option>
-                    </md-select> -->
                 </md-input-container>
 
                 <md-input-container class="md-block" flex>
@@ -112,8 +109,32 @@
                 </md-input-container>
             </div>
             <div layout="row" layout-align="end none">
-                <md-button class="md-raised md-primary material-button f-montserrat">Siguiente</md-button>
+                <md-button class="md-raised md-primary material-button f-montserrat" ng-click="nextStep()">Siguiente</md-button>
             </div>
         </div>
+
+        <div ng-show="variables.step == 2">
+            <div layout="row" layout-align="end none">
+                <md-button class="md-raised md-primary material-button f-montserrat" ng-click="prevoiousStep()">Anterios</md-button>
+                <md-button class="md-raised md-primary material-button f-montserrat" ng-click="nextStep()">Siguiente</md-button>
+            </div>
+        </div> -->
+
+        <wizard on-finish="finishedWizard()" on-cancel="cancelledWizard()" indicators-position="top"> 
+            <wz-step wz-title="Información General">
+                <h1>This is the first step</h1>
+                <p>Here you can use whatever you want. You can use other directives, binding, etc.</p>
+                <input type="submit" wz-next value="Continue" />
+            </wz-step>
+            <wz-step wz-title="Continuing">
+                <h1>Continuing</h1>
+                <p>You have continued here!</p>
+                <input type="submit" wz-next value="Go on" />
+            </wz-step>
+            <wz-step wz-title="More steps">
+                <p>Even more steps!!</p>
+                <input type="submit" wz-next value="Finish now" />
+            </wz-step>
+        </wizard>
     </form>
 </div>

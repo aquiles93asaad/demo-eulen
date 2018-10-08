@@ -4,6 +4,7 @@ angular.module('EulenApp')
 
 .controller('CandidateController', ['$scope', '$state',
     function ($scope,$state){
+        /* Scope variables */
         $scope.variables = {
             step: 1
         };
@@ -44,5 +45,20 @@ angular.module('EulenApp')
             D_ESTADO_CIVIL: null,
             N_HIJOS: null
         }
+        /*****************/
+
+        /* Scope functions */
+        $scope.nextStep = function() {
+            $scope.variables.step++;
+        }
+
+        $scope.previousStep = function() {
+            $scope.variables.step--;
+        }
+        /*******************/
+        
+        /* Private fucntions */
+        
+        /*********************/
     }
 ])
