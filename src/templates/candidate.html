@@ -2,6 +2,9 @@
     <form>
         <div>
             <div layout="row">
+                <h2><span>Datos Personales</span></h2>
+            </div>
+            <div layout="row">
                 <md-input-container class="md-block" flex="30">
                     <label>Apellido</label>
                     <input ng-model="candidate.D_APELLIDO" id="D_APELLIDO" name="D_APELLIDO" required>
@@ -21,7 +24,8 @@
             <div layout="row">
                 <md-input-container class="md-block" flex=20>
                     <label>Tipo Documento</label>
-                    <md-select ng-model="candidate.D_TIPO_DOCUMENTO" id="D_TIPO_DOCUMENTO" name="D_TIPO_DOCUMENTO" required>
+                    <md-select ng-model="candidate.D_TIPO_DOCUMENTO" id="D_TIPO_DOCUMENTO" name="D_TIPO_DOCUMENTO"
+                        required>
                         <md-option value="DNI">DNI</md-option>
                         <md-option value="PASAPORTE">PASAPORTE</md-option>
                     </md-select>
@@ -35,6 +39,52 @@
                 <md-input-container class="md-block" flex>
                     <label>Numero seguridad social</label>
                     <input ng-model="candidate.N_SEGURIDAD_SOCIALD" id="N_SEGURIDAD_SOCIAL" name="N_SEGURIDAD_SOCIAL">
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex=60>
+                    <label>Nacionalidad</label>
+                    <md-select ng-model="candidate.D_NACIONALIDAD" id="D_NACIONALIDAD" name="D_NACIONALIDAD" required>
+                        <md-option ng-value="nationality" ng-repeat="nationality in nationalities">{{nationality}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="30">
+                    <label>Estado Civil</label>
+                    <md-select ng-model="candidate.D_ESTADO_CIVIL" id="D_ESTADO_CIVIL" name="D_ESTADO_CIVIL" required>
+                        <md-option ng-value="status" ng-repeat="status in civilStatus">{{status}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="20">
+                    <label>Sexo</label>
+                    <md-select ng-model="candidate.B_SEXO" id="B_SEXO" name="B_SEXO" required>
+                        <md-option ng-value="HOMBRE">Hombre</md-option>
+                        <md-option ng-value="MUJER">Mujer</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="10">
+                    <label>Hijos</label>
+                    <input type="" ng-model="candidate.N_HIJOS" id="N_HIJOS" name="N_HIJOS">
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>E-mail</label>
+                    <input ng-model="candidate.D_MAIL" id="D_MAIL" name="D_MAIL" required>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="40">
+                    <label>Fecha de nacimiento</label>
+                    <md-datepicker ng-model="candidate.F_NACIMIENTO" id="F_NACIMIENTO" name="F_NACIMIENTO" required></md-datepicker>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="10">
+                    <label>Edad</label>
+                    <input ng-model="candidate.N_EDAD" id="N_EDAD" name="N_EDAD" disabled>
                 </md-input-container>
             </div>
 
@@ -63,6 +113,7 @@
                     <label>Domicilio</label>
                     <input ng-model="candidate.D_DOMICILIO" id="D_DOMICILIO" name="D_DOMICILIO" required>
                 </md-input-container>
+
                 <md-input-container class="md-block" flex>
                     <label>Codigo Postal</label>
                     <input ng-model="candidate.N_CP" id="N_CP" name="N_CP" required>
@@ -70,10 +121,7 @@
             </div>
 
             <div layout="row">
-                <md-input-container class="md-block" flex>
-                    <label>E-mail</label>
-                    <input ng-model="candidate.D_MAIL" id="D_MAIL" name="D_MAIL" required>
-                </md-input-container>
+
             </div>
 
             <div layout="row">
@@ -88,30 +136,74 @@
                 </md-input-container>
             </div>
 
+            <div layout="row" layout-align="end none">
+                <md-button class="md-raised md-primary material-button f-montserrat">Siguiente</md-button>
+            </div>
+        </div>
+
+        <div>
             <div layout="row">
-                <md-input-container class="md-block" flex="40">
-                    <label>Fecha de nacimiento</label>
-                    <md-datepicker ng-model="candidate.F_NACIMIENTO" id="F_NACIMIENTO" name="F_NACIMIENTO" required></md-datepicker>
-                </md-input-container>
+                <h2><span>Movilidad</span></h2>
+            </div>
 
-                <md-input-container class="md-block" flex="10">
-                    <label>Edad</label>
-                    <input ng-model="candidate.N_EDAD" id="N_EDAD" name="N_EDAD" disabled>
-                </md-input-container>
-
-                <md-input-container class="md-block" flex="30">
-                    <label>Estado Civil</label>
-                    <md-select ng-model="candidate.D_ESTADO_CIVIL" id="D_ESTADO_CIVIL" name="D_ESTADO_CIVIL" required>
-                        <md-option ng-value="status" ng-repeat="status in civilStatus">{{status}}</md-option>
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Licencia</label>
+                    <md-select ng-model="candidate.D_LICENCIA" id="D_LICENCIA" name="D_LICENCIA" required>
+                        <md-option ng-value="license.value" ng-repeat="license in licenses">{{license.label}}</md-option>
                     </md-select>
                 </md-input-container>
+            </div>
 
-                <md-input-container class="md-block" flex="20">
-                    <label>Hijos</label>
-                    <input ng-model="candidate.N_HIJOS" id="N_HIJOS" name="N_HIJOS">
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <md-checkbox ng-model="candidate.B_VEHICULO_PROPIO" aria-label="">
+                        Vehiculo Propio
+                    </md-checkbox>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <md-checkbox ng-model="candidate.B_TRABAJO_ACTUAL" aria-label="">
+                        Trabajo Actual
+                    </md-checkbox>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <md-checkbox ng-model="candidate.B_INSCRIPCION_DESEMPLEO" aria-label="">
+                        Inscripto Desempleo
+                    </md-checkbox>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <md-checkbox ng-model="candidate.B_COBRO_PRESTACION" aria-label="">
+                        Cobro de prestaciones
+                    </md-checkbox>
                 </md-input-container>
             </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex=25>
+                    <md-checkbox ng-model="candidate.B_VISA_TRABAJO" aria-label="">
+                        Visa de trabajo
+                    </md-checkbox>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex=35>
+                    <label>Fin visa de trabajo</label>
+                    <md-datepicker ng-model="candidate.F_FIN_VISA_TRABAJO" id="F_FIN_VISA_TRABAJO" name="F_FIN_VISA_TRABAJO"></md-datepicker>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <label>Medio de convocacion</label>
+                    <md-select ng-model="candidate.D_MEDIO_CONVOCATORIA" id="D_MEDIO_CONVOCATORIA" name="D_MEDIO_CONVOCATORIA"
+                        required>
+                        <md-option ng-value="ad.value" ng-repeat="ad in announcement">{{ad.label}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
             <div layout="row" layout-align="end none">
+                <md-button class="md-raised md-primary material-button f-montserrat">Anterior</md-button>
                 <md-button class="md-raised md-primary material-button f-montserrat">Siguiente</md-button>
             </div>
         </div>
