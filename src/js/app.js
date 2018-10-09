@@ -6,8 +6,7 @@ angular.module('EulenApp', [
     'ngMessages',
     'ngAnimate',
     'angularMoment',
-    'ngMaterial',
-    'mgo-angular-wizard'
+    'ngMaterial'
 ])
 
 /* -------

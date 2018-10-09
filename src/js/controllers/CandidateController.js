@@ -6,24 +6,48 @@ angular.module('EulenApp')
     function ($scope,$state){
         /* Scope variables */
         $scope.variables = {
-            step: 1
+            tab: 0,
+            maxTabs: 4
         };
 
-        $scope.countries= [
-            'Alemania',
-            'España',
-            'Francia',
-            'Inglaterra',
+        $scope.nationalities = [
+            { value: 'ALEMANIA', label: 'Alemania'},
+            { value: 'ESPANIA', label: 'España'},
+            { value: 'FRANCIA', label: 'Francia'},
+            { value: 'INGLATERRA', label: 'Inglaterra'}
         ];
 
         $scope.civilStatus = [
-            'SOLTERO',
-            'CASADO',
-            'CONVIVIENTE',
-            'SEPARADO',
-            'VIUDO',
-            'DIVORCIADO'
-        ]
+            { value: 'SOLTERO', label: 'Soltero'},
+            { value: 'CASADO', label: 'Casado'},
+            { value: 'CONVIVIENTE', label: 'Conviviente'},
+            { value: 'SEPARADO', label: 'Separado'},
+            { value: 'VIUDO', label: 'Viudo'},
+            { value: 'DIVORCIADO', label: 'Divorciado'}
+        ];
+
+        $scope.announcement = [
+            { value: 'AMIGOS', label:'Amigos'},
+            { value: 'PERIODICO', label:'Periodicos'},
+            { value: 'MUNICIPALIDAD', label:'Municipalidad'},
+            { value: 'VOLANTE', label:'Volante'},
+            { value: 'INTERNET', label:'Internet'},
+            { value: 'FERIA', label:'Feria'},
+            { value: 'PROGRAMA', label:'Programa'},
+            { value: 'REDES SOCIALES', label:'Redes sociales'},
+            { value: 'REFERIDOS', label:'Referidos'},
+            { value: 'EX-TRABAJADORES', label:'Ex-trabajadores'},
+            { value: 'OTROS', label:'Otros'}
+        ];
+
+        $scope.licenses = [
+            { value: 'No', label:'No'},
+            { value:'Motocicleta', label:'Motocicleta'},
+            { value:'Automovil', label:'Automovil'},
+            { value:'Camiones menores a 3.500kg', label:'Camiones menores a 3.500kg'},
+            { value:'Camiones mayores a 3.500kg', label:'Camiones mayores a 3.500kg'},
+            { value:'', label:'Mercancias peligrosas'}
+        ];
 
         $scope.candidate = {
             D_APELLIDO: null,
@@ -43,17 +67,28 @@ angular.module('EulenApp')
             F_NACIMIENTO: null,
             N_EDAD: null,
             D_ESTADO_CIVIL: null,
-            N_HIJOS: null
+            N_HIJOS: null,
+            B_SEXO: null,
+            D_LICENCIA: null,
+            B_VEHICULO_PROPIO: null,
+            B_TRABAJO_ACTUAL: null,
+            B_INSCRIPCION_DESEMPLEO: null,
+            B_COBRO_PRESTACION: null,
+            B_VISA_TRABAJO: null,
+            F_FIN_VISA_TRABAJO: null,
+            D_MEDIO_CONVOCATORIA: null,
+            DISPONIBLIDAD_HORARIA: null,
+            DISPONIBLIDAD_CONTRATO: null
         }
         /*****************/
 
         /* Scope functions */
-        $scope.nextStep = function() {
-            $scope.variables.step++;
+        $scope.nextTab = function() {
+            $scope.variables.tab++;
         }
 
-        $scope.previousStep = function() {
-            $scope.variables.step--;
+        $scope.previousTab = function() {
+            $scope.variables.tab--;
         }
         /*******************/
         

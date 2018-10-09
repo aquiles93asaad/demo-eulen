@@ -1,3 +1,15 @@
+md-content {
+    background-color: transparent;
+    }
+    md-content md-tabs .md-tab .md-ripple-container,
+    .md-ripple-container {
+        color: #0165ac;
+    }
+    md-content md-tabs md-ink-bar {
+        background-color: #0165ac;
+        color: #0165ac;
+    }
+
 .md-datepicker-input-container {
     width: 75%;
 }
