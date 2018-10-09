@@ -49,14 +49,16 @@
                         <div layout="row">
                             <md-input-container class="md-block" flex=60>
                                 <label>Nacionalidad</label>
-                                <md-select ng-model="candidate.D_NACIONALIDAD" id="D_NACIONALIDAD" name="D_NACIONALIDAD" required>
+                                <md-select ng-model="candidate.D_NACIONALIDAD" id="D_NACIONALIDAD" name="D_NACIONALIDAD"
+                                    required>
                                     <md-option ng-value="nationality" ng-repeat="nationality in nationalities">{{nationality}}</md-option>
                                 </md-select>
                             </md-input-container>
 
                             <md-input-container class="md-block" flex="30">
                                 <label>Estado Civil</label>
-                                <md-select ng-model="candidate.D_ESTADO_CIVIL" id="D_ESTADO_CIVIL" name="D_ESTADO_CIVIL" required>
+                                <md-select ng-model="candidate.D_ESTADO_CIVIL" id="D_ESTADO_CIVIL" name="D_ESTADO_CIVIL"
+                                    required>
                                     <md-option ng-value="status" ng-repeat="status in civilStatus">{{status}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -83,7 +85,8 @@
 
                             <md-input-container class="md-block" flex="40">
                                 <label>Fecha de nacimiento</label>
-                                <md-datepicker ng-model="candidate.F_NACIMIENTO" id="F_NACIMIENTO" name="F_NACIMIENTO" required></md-datepicker>
+                                <md-datepicker ng-model="candidate.F_NACIMIENTO" id="F_NACIMIENTO" name="F_NACIMIENTO"
+                                    required></md-datepicker>
                             </md-input-container>
 
                             <md-input-container class="md-block" flex="10">
@@ -246,7 +249,130 @@
 
                 <md-tab label="Formación">
                     <md-content>
-                        <span>3</span>
+                        <div layout="row">
+                            <h2><span>Formación</span></h2>
+                        </div>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Formacion Primaria</label>
+                                <input ng-model="candidate.D_FORM_PRIMARIA" id="D_FORM_PRIMARIA" name="D_FORM_PRIMARIA"
+                                    required md-maxlength="40">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Fin Estudios Primarios</label>
+                                <md-datepicker ng-model="candidate.F_FIN_PRIMARIA" id="F_FIN_PRIMARIA" name="F_FIN_PRIMARIA"
+                                    required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_SIN_FORMACION" aria-label="">
+                                    Sin formacion
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+
+                            <md-input-container class="md-block" flex>
+                                <label>Ciclo formativo</label>
+                                <input ng-model="candidate.D_CICLO_FORMATIVO" id="D_CICLO_FORMATIVO" name="D_CICLO_FORMATIVO"
+                                    required md-maxlength="40">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Fin ciclo formativo</label>
+                                <md-datepicker ng-model="candidate.F_FIN_FORMATIVO" id="F_FIN_FORMATIVO" name="F_FIN_FORMATIVO"
+                                    required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_CICLO_FORMATIVO" aria-label="">
+                                    Ciclo Formativo
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Secundaria</label>
+                                <input ng-model="candidate.D_CICLO_FORMATIVO" id="D_CICLO_FORMATIVO" name="D_CICLO_FORMATIVO"
+                                    required md-maxlength="40">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Fin secundaria</label>
+                                <md-datepicker ng-model="candidate.F_FIN_SECUNDARIA" id="F_FIN_SECUNDARIA" name="F_FIN_SECUNDARIA"
+                                    required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_FORM_SECUNDARIA" aria-label="">
+                                    Estudio secundario
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Universidad</label>
+                                <input ng-model="candidate.D_FORM_UNIVERSITARIA" id="D_FORM_UNIVERSITARIA" name="D_FORM_UNIVERSITARIA"
+                                    required md-maxlength="40">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Fin universidad</label>
+                                <md-datepicker ng-model="candidate.F_FIN_SECUNDARIA" id="F_FIN_SECUNDARIA" name="F_FIN_SECUNDARIA"
+                                    required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_FORM_UNIVERSITARIA" aria-label="">
+                                    Estudio universitario
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Certificacion</label>
+                                <input ng-model="candidate.D_CERTIFICACION" id="D_CERTIFICACION" name="D_CERTIFICACION"
+                                    required md-maxlength="40">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Fin Certificacion</label>
+                                <md-datepicker ng-model="candidate.F_FIN_CERTIFICACION" id="F_FIN_CERTIFICACION" name="F_FIN_CERTIFICACION"
+                                    required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_CERTIFICACION" aria-label="">
+                                    Estudio de certificacion
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Complementaria</label>
+                                <input ng-model="candidate.D_COMPLEMENTARIA" id="D_COMPLEMENTARIA" name="D_COMPLEMENTARIA"
+                                    required md-maxlength="40">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Fin complementaria</label>
+                                <md-datepicker ng-model="candidate.F_FIN_COMPLEMENTARIA" id="F_FIN_COMPLEMENTARIA" name="F_FIN_COMPLEMENTARIA"
+                                    required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_COMPLEMENTARIA" aria-label="">
+                                    Estudios complementarios
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+
                         <div layout="row" layout-align="space-between none">
                             <md-button class="md-raised md-primary material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
                             <md-button class="md-raised md-primary material-button f-montserrat" ng-click="nextTab()">Siguiente</md-button>
@@ -256,7 +382,218 @@
 
                 <md-tab label="Informática">
                     <md-content>
-                        <span>4</span>
+                        <div layout="row">
+                            <h2><span>Informatica</span></h2>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_OFFICE" aria-label="">
+                                    Office
+                                </md-checkbox>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_WORD" aria-label="">
+                                    Word
+                                </md-checkbox>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <md-checkbox ng-model="candidate.B_EXCEL" aria-label="">
+                                    Excel
+                                </md-checkbox>
+                            </md-input-container>
+
+                            
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel Office</label>
+                                <md-select ng-model="candidate.D_OFFICE_NIVEL" id="D_OFFICE_NIVEL" name="D_OFFICE_NIVEL"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel Word</label>
+                                <md-select ng-model="candidate.D_WORD_NIVEL" id="D_WORD_NIVEL" name="D_WORD_NIVEL"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel Excel</label>
+                                <md-select ng-model="candidate.D_EXCEL_NIVEL" id="D_EXCEL_NIVEL" name="D_EXCEL_NIVEL"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex=15>
+                                <md-checkbox ng-model="candidate.B_OTROS" aria-label="">
+                                    Otros
+                                </md-checkbox>
+                            </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nombre</label>
+                                <input ng-model="candidate.D_COMPLEMENTARIA" id="D_COMPLEMENTARIA" name="D_COMPLEMENTARIA"
+                                    required md-maxlength="40">
+                            </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel</label>
+                                <md-select ng-model="candidate.D_OTROS" id="D_OTROS" name="D_OTROS"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <h2><span>Idiomas</span></h2>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex=15>
+                                <label>Español</label>
+                            </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                    <label>Nivel oral</label>
+                                    <md-select ng-model="candidate.D_ESPANOL_ORAL" id="D_ESPANOL_ORAL" name="D_ESPANOL_ORAL"
+                                        required>
+                                        <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel escrito</label>
+                                <md-select ng-model="candidate.D_ESPANOL_ESCRITO" id="D_ESPANOL_ESCRITO" name="D_ESPANOL_ESCRITO"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        
+                        <div layout="row">     
+                                <md-input-container class="md-block" flex=15>
+                                        <label>Ingles</label>
+                                    </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                    <label>Nivel oral</label>
+                                    <md-select ng-model="candidate.D_INGLES_ORAL" id="D_INGLES_ORAL" name="D_INGLES_ORAL"
+                                        required>
+                                        <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel escrito</label>
+                                <md-select ng-model="candidate.D_INGLES_ESCRITO" id="D_INGLES_ESCRITO" name="D_INGLES_ESCRITO"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        
+                        <div layout="row">   
+                                <md-input-container class="md-block" flex=15>
+                                        <label>Portugues</label>
+                                    </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                    <label>Nivel oral</label>
+                                    <md-select ng-model="candidate.D_PORTUGUES_ORAL" id="D_PORTUGUES_ORAL" name="D_PORTUGUES_ORAL"
+                                        required>
+                                        <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel escrito</label>
+                                <md-select ng-model="candidate.D_PORTUGUES_ESCRITO" id="D_PORTUGUES_ESCRITO" name="D_PORTUGUES_ESCRITO"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        
+                        <div layout="row">      
+                                <md-input-container class="md-block" flex=15>
+                                        <label>Catalan</label>
+                                    </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                    <label>Nivel oral</label>
+                                    <md-select ng-model="candidate.D_CATALAN_ORAL" id="D_CATALAN_ORAL" name="D_CATALAN_ORAL"
+                                        required>
+                                        <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel escrito</label>
+                                <md-select ng-model="candidate.D_CATALAN_ESCRITO" id="D_CATALAN_ESCRITO" name="D_CATALAN_ESCRITO"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        
+                        <div layout="row">
+                                <md-input-container class="md-block" flex=15>
+                                        <label>Euskera</label>
+                                    </md-input-container>
+
+                            <md-input-container class="md-block" flex>
+                                    <label>Nivel oral</label>
+                                    <md-select ng-model="candidate.D_EUSKERA_ORAL" id="D_EUSKERA_ORAL" name="D_EUSKERA_ORAL"
+                                        required>
+                                        <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel escrito</label>
+                                <md-select ng-model="candidate.D_EUSKERA_ESCRITO" id="D_EUSKERA_ESCRITO" name="D_EUSKERA_ESCRITO"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container class="md-block" flex=15>
+                                <label>Idioma</label>
+                                <input ng-model="candidate.D_OTRO" id="D_OTRO" name="D_OTRO" required md-maxlength="15">
+                            </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel oral</label>
+                                <md-select ng-model="candidate.D_OTRO_ORAL" id="D_OTRO_ORAL" name="D_OTRO_ORAL"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        
+                            <md-input-container class="md-block" flex>
+                                <label>Nivel escrito</label>
+                                <md-select ng-model="candidate.D_OTRO_ESCRITO" id="D_OTRO_ESCRITO" name="D_OTRO_ESCRITO"
+                                    required>
+                                    <md-option ng-value="level.value" ng-repeat="level in LanguageLevel">{{level.label}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
                         <div layout="row" layout-align="space-between none">
                             <md-button class="md-raised md-primary material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
                             <md-button class="md-raised md-primary material-button f-montserrat" ng-click="nextTab()">Siguiente</md-button>

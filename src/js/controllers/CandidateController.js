@@ -49,6 +49,19 @@ angular.module('EulenApp')
             { value:'', label:'Mercancias peligrosas'}
         ];
 
+        $scope.computerLevels =[
+            { value: 'Usuario', label:'Medio'},
+            { value: 'Usuario Avanzado', label:'Avanzado'},
+            { value: 'Experto', label:'Experto'}
+        ];
+
+        $scope.LanguageLevel =[
+            { value: 'Basico', label:'Basico'},
+            { value: 'Medio', label:'Medio'},
+            { value: 'Avanzado', label:'Avanzado'},
+            { value: 'Bilingue', label:'Bilingue'}
+        ];
+
         $scope.candidate = {
             D_APELLIDO: null,
             D_SEGUNDO_APELLIDO: null,
