@@ -94,31 +94,53 @@ angular.module('EulenApp', [
             url: '/cliente',
             views: {
                 'application': {
-                    templateUrl: 'src/templates/cliente.html',
-                    controller: 'ClienteController'
+                    templateUrl: 'src/templates/client.html',
+                    controller: 'ClientController'
                 }
             },
-            adminServices: 'AdminServices',
+            searchServices: 'SearchServices',
             resolve: {
-                menuRights: function($rootScope, AdminServices) {
+                data: function($rootScope, SearchServices) {
+                    var returnedData = {
+                        client: {
+                            D_CLIENT: null,
+                            C_CLIENT: null,
+                            N_CIF: null
+                        },
+                        locales: []
+                    };
+                    
+                    var params = $rootScope.searchParams;
+                    params.documentClass = 'ABM_CLIENTE';
+                    params.maxResults = 1;
+                    params.queryFields = ['D_CLIENTE', 'C_CLIENTE', 'N_CIF'];
+                    params.searchCriterias.push({
+                        'fieldData': {
+                            'key': 'USER_ID',
+                            'value': $rootScope.userID,
+                            'dataType': 'string'
+                        },
+                        'criteria': 'equals'
+                    });
 
-                    return AdminServices.getAccessRightForAction(params)
-                    .then(function(createAccess) {
-                        $rootScope.menuAccessRights.create = createAccess;
-                        params.rightName = 'SEARCH';
-                        return AdminServices.getAccessRightForAction(params);
-                    })
-                    .then(function(searchAccess) {
-                        $rootScope.menuAccessRights.search = searchAccess;
-                        params.rightName = 'TRAY';
-                        return AdminServices.getAccessRightForAction(params);
-                    })
-                    .then(function(traysAccess) {
-                        $rootScope.menuAccessRights.trays = traysAccess;
-                        return $rootScope.menuAccessRights;
+                    return SearchServices.getDocumentsByCriterias(params)
+                    .then(function(result) {
+                        var fields = result.documents[0].fields;
+                        for (var i = 0; i < fields.length; i++) {
+                            if(fields[i].key == 'D_CLIENTE') {
+                                returnedData.client.D_CLIENT = fields[i].value;
+                            } else if(fields[i].key == 'C_CLIENTE') {
+                                returnedData.client.C_CLIENT = fields[i].value;
+                            }
+                        }
+                        
+                        params.documentClass = 'ABM_CLIENTE_LOCAL';
+                        params.queryFields = ['D_CLIENTE', 'C_CLIENTE'];
+                        params.maxResults = 20;
+                        
                     })
                     .catch(function(error) {
-                        $cordovaToast.showShortBottom(error);
+                        console.error(error);
                     })
                 }
             }
@@ -134,6 +156,7 @@ angular.module('EulenApp', [
     .run(['$rootScope', '$transitions',
         function($rootScope, $transitions){
             $rootScope.adminToken = 'xOir4xDkMmtIVZ3zjmSql5%2FFsmjhSyLugwmCEX3P8g8%3D';
+            $rootScope.token = $rootScope.adminToken;
             $rootScope.serverEndpoint = 'http://localhost:8080/thuban-web/';
             $rootScope.showHeaderLogo = true;
             
@@ -146,5 +169,18 @@ angular.module('EulenApp', [
                     $rootScope.showHeaderLogo = true;
                 }
             });
+
+            // search params model, useful to not create it more than once
+            $rootScope.searchParams = {
+                documentClass: null,
+                orCriteria: false,
+                queryFields: [],
+                searchCriterias: [],
+                from: 0,
+                to: 20,
+                maxResults: 15,
+                sortField: 'INDEX_ITEM_ID',
+                sortDirection: 'ASC',
+            };
         }
     ])

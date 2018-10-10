@@ -14,7 +14,8 @@ angular.module('EulenApp')
         $scope.login = function() {
             AdminServices.getToken($scope.loginForm)
             .then(function(token) {
-                $rootScope.clientToken = token;
+                $rootScope.userID = $scope.loginForm.user; 
+                $rootScope.toekn = token;
                 $state.go('client');
             })
         }
