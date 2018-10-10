@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="src/css/layout.css">
         <link rel="stylesheet" href="src/css/helpers.css">
         <link rel="stylesheet" href="src/css/home.css">
+        <link rel="stylesheet" href="src/css/login.css">
         <link rel="stylesheet" href="src/css/material.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,600,700" rel="stylesheet">
@@ -24,14 +25,14 @@
     <body ng-app="EulenApp">
         <div class="page">
             <header class="container" id="header">
-                <div class="site-branding">
-                    <a href="" itemprop="url" title="Grupo Eulen">
+                <div class="site-branding" ng-show="$root.showHeaderLogo">
+                    <a ui-sref="home" itemprop="url" title="Grupo Eulen">
                         <img src="src/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
                     </a>
                 </div>
             </header>
 
-            <div ui-view="application" class="container content-container" id="container"></div>
+            <div ui-view="application" class="container content-container" id="container" content-height></div>
 
             <footer class="footer" id="footer">
                 <div class="container footer-iwrap">
@@ -63,5 +64,16 @@
         <!-- controllers -->
         <script type="text/javascript" src="src/js/controllers/AppController.js"></script>
         <script type="text/javascript" src="src/js/controllers/CandidateController.js"></script>
+        <script type="text/javascript" src="src/js/controllers/ClientController.js"></script>
+        <script type="text/javascript" src="src/js/controllers/LoginController.js"></script>
+
+        <!-- services -->
+        <script type="text/javascript" src="src/js/services/AdminServices.js"></script>
+        <script type="text/javascript" src="src/js/services/DocumentServices.js"></script>
+        <script type="text/javascript" src="src/js/services/ResourceServices.js"></script>
+        <script type="text/javascript" src="src/js/services/SearchServices.js"></script>
+
+        <!-- directives -->
+        <script type="text/javascript" src="src/js/directives/content-height.directive.js"></script>
     </body>
 </html>

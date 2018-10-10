@@ -1,4 +1,4 @@
-<div layout="column">
+ <div layout="column">
     <form ng-cloak>
         <md-content>
             <md-tabs md-dynamic-height md-selected="variables.tab">
@@ -153,7 +153,7 @@
                         </div>
 
                         <div layout="row">
-                            <md-input-container class="md-block">
+                            <md-input-container class="md-block" flex="50">
                                 <label>Licencia</label>
                                 <md-select ng-model="candidate.D_LICENCIA" id="D_LICENCIA" name="D_LICENCIA" required>
                                     <md-option ng-value="license.value" ng-repeat="license in licenses">{{license.label}}</md-option>

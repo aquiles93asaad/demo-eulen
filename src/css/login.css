@@ -1,45 +1,23 @@
-.login-form {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+.login-container {
+    width: 50%;
+    margin: 0 auto;
 }
 
-.login-form .input-container {
-    margin-bottom: 20px;
+.login-container .img-container {
+    margin-bottom: 30px;
 }
 
-.login-form .input-container img {
-    right: 20px;
-    max-width: 20px;
+.login-container .img-container {
+    background-color: #1870ae;
+    width: 210px;
+    height: 120px;
+    display: inline-block;
 }
 
-.login-form input{
-    background-color: rgba(255, 255, 255, .25);
-    box-shadow: 1px 2px 5px 0.5px rgba(0,0,0,.26);
-    line-height: 40px;
-    padding: 10px;
+.login-container .img-container img {
+    margin-top: 25px;
 }
 
-.login-form input::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, .5);
-}
-
-.login-form input::-moz-placeholder {
-    color: rgba(255, 255, 255, .5);
-}
-
-.login-form input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, .5);
-}
-
-.login-form input:-moz-placeholder {
-    color: rgba(255, 255, 255, .5);
-}
-
-.login-form input::placeholder {
-    color: rgba(255, 255, 255, .5);
+.login-container md-input-container {
+    text-align: left;
 }
