@@ -1,0 +1,27 @@
+<div class="login-container">
+    <form class="text-center" ng-submit="login()">
+        <div class="img-container">
+            <img src="src/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
+        </div>
+
+        <md-input-container class="md-icon-float md-icon-right md-block">
+            <label>Usuario</label>
+            <md-icon>
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </md-icon>
+            <input ng-model="loginForm.user" id="user" name="user" required>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-icon-right md-block">
+            <label>Contraseña</label>
+            <md-icon>
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </md-icon>
+            <input type="password" ng-model="loginForm.password" id="password" name="password">
+        </md-input-container>
+
+        <div class="text-center">
+            <md-button class="md-raised md-primary material-button f-montserrat" type="submit">Ingresar</md-button>
+        </div>
+    </form>
+</div>
