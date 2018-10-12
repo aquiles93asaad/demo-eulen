@@ -34,12 +34,12 @@ angular.module('EulenApp')
         ];
 
         $scope.tiposContrato = [
-            { value: 'B_TIEMPO_UNDIA', label: 'Un día'},
-            { value: 'B_TIEMPO_SEMANA', label: 'Una semana'},
-            { value: 'B_TIEMPO_DOS_SEMANA', label: 'Dos semanas'},
-            { value: 'B_TIEMPO_MES', label: 'Un mes'},
-            { value: 'B_TIEMPO_TRES_MES', label: 'Tres meses'},
-            { value: 'B_TIEMPO_PERMANENTE', label: 'Permanente'}
+            { value: 'Un dia', label: 'Un día'},
+            { value: 'Una semana', label: 'Una semana'},
+            { value: '15 dias', label: '15 días'},
+            { value: 'Un mes', label: 'Un mes'},
+            { value: '3 meses', label: '3 meses'},
+            { value: 'Permanente', label: 'Permanente'}
         ];
 
         $scope.locales = [];
@@ -76,7 +76,6 @@ angular.module('EulenApp')
             D_OBSERVACIONES_CLIENTE: null,
             DISPONIBLIDAD_HORARIA: null,
             DISPONIBLIDAD_DIARIA: null,
-            TIPO_CONTRATO: null,
             B_DISPO_MANANA: 'No',
             B_DISPO_TARDE: 'No',
             B_DISPO_NOCHE: 'No',
@@ -89,12 +88,7 @@ angular.module('EulenApp')
             B_DISPO_SABADO: 'No',
             B_DISPO_DOMINGO: 'No',
             B_DISPO_ROTATIVO_DIAS: 'No',
-            B_TIEMPO_UNDIA: 'No',
-            B_TIEMPO_SEMANA: 'No',
-            B_TIEMPO_DOS_SEMANA: 'No',
-            B_TIEMPO_MES: 'No',
-            B_TIEMPO_TRES_MES: 'No',
-            B_TIEMPO_PERMANENTE: 'No',
+            D_DURACION_CONTRATO: null,
             B_VALIDACION_MOD: 'No',
             D_ESTADO_SOLICITUD: 'Asignar TS'
         }
@@ -124,10 +118,8 @@ angular.module('EulenApp')
                 $scope.variables.isSubmitting = true;
                 processMultipleSelect($scope.petition.DISPONIBLIDAD_HORARIA);
                 processMultipleSelect($scope.petition.DISPONIBLIDAD_DIARIA);
-                processMultipleSelect($scope.petition.TIPO_CONTRATO);
                 delete $scope.petition.DISPONIBLIDAD_HORARIA;
                 delete $scope.petition.DISPONIBLIDAD_DIARIA;
-                delete $scope.petition.TIPO_CONTRATO;
                 $scope.petition.F_PETICION = moment();
                 var fields = processPetitionFields();
 

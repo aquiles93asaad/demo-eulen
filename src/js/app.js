@@ -20,7 +20,8 @@ angular.module('EulenApp', [
     .constant('QUERY_FIELDS', {
         'cliente': ['D_CLIENTE', 'C_CLIENTE', 'N_CIF'],
         'cliente_local': ['D_LOCAL', 'C_LOCAL', 'D_ZONA', 'D_SUBZONA', 'D_DIRECCION_LOCAL', 'N_LATITUD', 'N_LONGITUD'],
-        'puestos': ['D_AREA', 'C_AREA', 'D_PUESTO', 'C_PUESTO']
+        'puestos': ['D_AREA', 'C_AREA', 'D_PUESTO', 'C_PUESTO'],
+        'peticion': ['N_PETICION', 'F_PETICION', 'D_LOCAL', 'F_INICIO', 'D_ESTADO_SOLICITUD']
     })
 
     /* --------------------------------------------
@@ -87,6 +88,9 @@ angular.module('EulenApp', [
                     templateUrl: 'src/templates/login.html',
                     controller: 'LoginController'
                 }
+            },
+            resolve: {
+
             }
         })
 
@@ -101,7 +105,79 @@ angular.module('EulenApp', [
                     templateUrl: 'src/templates/petitions.html',
                     controller: 'PetitionsController'
                 }
+            },
+            searchServices: 'SearchServices',
+            QUERY_FIELDS: 'QUERY_FIELDS',
+            resolve: {
+                petitions: function($rootScope, SearchServices, QUERY_FIELDS) {
+                    var client = {
+                        D_CLIENTE: null,
+                        C_CLIENTE: null,
+                    };
+
+                    var params = $rootScope.searchParams;
+                    params.documentClass = 'ABM_CLIENTE';
+                    params.maxResults = 1;
+                    params.queryFields = QUERY_FIELDS.cliente;
+                    params.searchCriterias.push({
+                        'fieldData': {
+                            'key': 'USERNAME',
+                            'value': $rootScope.userID,
+                            'dataType': 'string'
+                        },
+                        'criteria': 'equals'
+                    });
+
+                    return SearchServices.getDocumentsByCriterias(params)
+                    .then(function(result) {
+                        var fields = result.documents[0].fields;
+
+                        for (var i = 0; i < fields.length; i++) {
+                            if(fields[i].key == 'D_CLIENTE') {
+                                client.D_CLIENTE = fields[i].value;
+                            } else if(fields[i].key == 'C_CLIENTE') {
+                                client.C_CLIENTE = fields[i].value;
+                            }
+                        }
+
+                        params.documentClass = 'PETICION_MOD';
+                        params.queryFields = QUERY_FIELDS.peticion;
+                        params.maxResults = 100;
+                        params.searchCriterias = [
+                            {
+                                'fieldData': {
+                                    'key': 'D_CLIENTE',
+                                    'value': client.D_CLIENTE,
+                                    'dataType': 'string'
+                                },
+                                'criteria': 'equals'
+                            },
+                            {
+                                'fieldData': {
+                                    'key': 'C_CLIENTE',
+                                    'value': client.C_CLIENTE,
+                                    'dataType': 'string'
+                                },
+                                'criteria': 'equals'
+                            },
+                        ];
+                        
+                        return SearchServices.getDocumentsByCriterias(params);
+                    })
+                    .then(function(result) {
+                        var petitions = {
+                            count: result.count,
+                            documents: result.documents
+                        };
+                        
+                        return petitions;
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                    });
+                }
             }
+
         })
 
         /* -------
@@ -207,7 +283,7 @@ angular.module('EulenApp', [
                     })
                     .catch(function(error) {
                         console.error(error);
-                    })
+                    });
                 }
             }
         })

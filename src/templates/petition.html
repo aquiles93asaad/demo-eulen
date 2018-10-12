@@ -102,18 +102,16 @@
             </div>
 
             <div layout="row">
-                <md-input-container class="md-block" flex>
+                <md-input-container class="md-block" flex="50">
                     <label>Tipo de contrato</label>
-                    <md-select ng-model="petition.TIPO_CONTRATO" id="TIPO_CONTRATO" name="TIPO_CONTRATO" multiple required>
+                    <md-select ng-model="petition.D_DURACION_CONTRATO" id="D_DURACION_CONTRATO" name="D_DURACION_CONTRATO" required>
                         <md-option ng-value="tipo.value" ng-repeat="tipo in tiposContrato">{{tipo.label}}</md-option>
                     </md-select>
-                    <div ng-messages="petitionForm.TIPO_CONTRATO.$error">
+                    <div ng-messages="petitionForm.D_DURACION_CONTRATO.$error">
                         <div ng-message="required">Campo obligatorio</div>
                     </div>
                 </md-input-container>
-            </div>
-
-            <div layout="row">
+                    
                 <md-input-container class="md-block" flex="30">
                     <label>Fecha estimada de ingreso</label>
                     <md-datepicker ng-model="petition.F_ESTIMADA_INGRESO" id="F_ESTIMADA_INGRESO" name="F_ESTIMADA_INGRESO" required></md-datepicker>
@@ -121,16 +119,18 @@
                         <div ng-message="required">Campo obligatorio</div>
                     </div>
                 </md-input-container>
-                
-                <md-input-container class="md-block" flex="50">
-                    <label>Observación adicional</label>
-                    <input ng-model="petition.D_OBSERVACIONES_CLIENTE" id="D_OBSERVACIONES_CLIENTE" name="D_OBSERVACIONES_CLIENTE">
-                </md-input-container>
 
-                <md-input-container class="md-block" flex>
+                <md-input-container class="md-block" flex="20">
                     <md-checkbox ng-model="petition.B_VALIDACION_MOD" aria-label="" ng-true-value="'Si'" ng-false-value="'No'">
                         Validación MOD
                     </md-checkbox>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Observación adicional</label>
+                    <input ng-model="petition.D_OBSERVACIONES_CLIENTE" id="D_OBSERVACIONES_CLIENTE" name="D_OBSERVACIONES_CLIENTE">
                 </md-input-container>
             </div>
 
