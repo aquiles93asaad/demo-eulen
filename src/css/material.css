@@ -27,3 +27,24 @@ md-content {
 .material-button.md-button.md-raised:hover {
     opacity: .8;
 }
+
+md-checkbox.md-default-theme.md-checked .md-icon,
+md-checkbox.md-checked .md-icon {
+    background-color: #0165ac !important;
+}
+
+md-checkbox.md-default-theme.md-checked .md-ink-ripple,
+md-checkbox.md-checked .md-ink-ripple {
+    color: #0165ac;
+}
+
+.md-button md-progress-circular {
+    display: inline-block;
+    background-color: transparent !important;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+.md-button md-progress-circular path {
+    stroke: white !important;
+}

@@ -1,1 +1,145 @@
-hola
+<div layout="column">
+    <form ng-cloak name="petitionForm" ng-submit="createPetition(petitionForm)" novalidate>
+        <md-content>
+            <div layout="row">
+                <md-input-container class="md-block" flex="20">
+                    <label>Cantidad de candidatos</label>
+                    <input type="number" step=".01" ng-model="petition.N_CANTIDAD" id="N_CANTIDAD" name="N_CANTIDAD" required>
+                    <div ng-messages="petitionForm.N_CANTIDAD.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="80">
+                    <label>Local</label>
+                    <md-select ng-model="petition.D_LOCAL" id="D_LOCAL" name="D_LOCAL" ng-change="localChange()" required>
+                        <md-option ng-value="local.D_LOCAL" ng-repeat="local in locales">{{local.D_LOCAL}}</md-option>
+                    </md-select>
+                    <div ng-messages="petitionForm.D_LOCAL.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Provincia del local</label>
+                    <input ng-model="petition.D_ZONA" id="D_ZONA" name="D_ZONA" disabled>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <label>Localidad del local</label>
+                    <input ng-model="petition.D_SUBZONA" id="D_SUBZONA" name="D_SUBZONA" disabled>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <label>Dirección local</label>
+                    <input ng-model="petition.D_DIRECCION_LOCAL" id="D_DIRECCION_LOCAL" name="D_DIRECCION_LOCAL" disabled>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Puesto</label>
+                    <md-select ng-model="variables.D_PUESTO" id="D_PUESTO" name="D_PUESTO" ng-change="puestoChange()" required>
+                        <md-optgroup ng-repeat="area in areas" label="{{area.D_AREA}}">
+                            <md-option value="{{puesto.D_PUESTO}}_{{area.D_AREA}}" ng-repeat="puesto in area.puestos">{{puesto.D_PUESTO}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                    <div ng-messages="petitionForm.D_PUESTO.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Sueldo básico</label>
+                    <input type="number" ng-model="petition.N_SUELDO_BASICO" id="N_SUELDO_BASICO" name="N_SUELDO_BASICO" required>
+                    <div ng-messages="petitionForm.N_SUELDO_BASICO.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <label>Sexo</label>
+                    <md-select ng-model="petition.D_SEXO" id="D_SEXO" name="D_SEXO" required>
+                        <md-option ng-value="genre.value" ng-repeat="genre in genreOptions">{{genre.label}}</md-option>
+                    </md-select>
+                    <div ng-messages="petitionForm.D_SEXO.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="60">
+                    <label>Experiencia adicional</label>
+                    <input ng-model="petition.D_EXPERIENCIA_ADIC" id="D_EXPERIENCIA_ADIC" name="D_EXPERIENCIA_ADIC">
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Disponibilidad horaria</label>
+                    <md-select ng-model="petition.DISPONIBLIDAD_HORARIA" id="DISPONIBLIDAD_HORARIA" name="DISPONIBLIDAD_HORARIA" multiple required>
+                        <md-option ng-value="horario.value" ng-repeat="horario in disponibilidadesHorarias">{{horario.label}}</md-option>
+                    </md-select>
+                    <div ng-messages="petitionForm.DISPONIBLIDAD_HORARIA.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Disponibilidad diaria</label>
+                    <md-select ng-model="petition.DISPONIBLIDAD_DIARIA" id="DISPONIBLIDAD_DIARIA" name="DISPONIBLIDAD_DIARIA" multiple required>
+                        <md-option ng-value="dia.value" ng-repeat="dia in disponibilidadesDiarias">{{dia.label}}</md-option>
+                    </md-select>
+                    <div ng-messages="petitionForm.DISPONIBLIDAD_DIARIA.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>Tipo de contrato</label>
+                    <md-select ng-model="petition.TIPO_CONTRATO" id="TIPO_CONTRATO" name="TIPO_CONTRATO" multiple required>
+                        <md-option ng-value="tipo.value" ng-repeat="tipo in tiposContrato">{{tipo.label}}</md-option>
+                    </md-select>
+                    <div ng-messages="petitionForm.TIPO_CONTRATO.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container class="md-block" flex="30">
+                    <label>Fecha estimada de ingreso</label>
+                    <md-datepicker ng-model="petition.F_ESTIMADA_INGRESO" id="F_ESTIMADA_INGRESO" name="F_ESTIMADA_INGRESO" required></md-datepicker>
+                    <div ng-messages="petitionForm.F_ESTIMADA_INGRESO.$error">
+                        <div ng-message="required">Campo obligatorio</div>
+                    </div>
+                </md-input-container>
+                
+                <md-input-container class="md-block" flex="50">
+                    <label>Observación adicional</label>
+                    <input ng-model="petition.D_OBSERVACIONES_CLIENTE" id="D_OBSERVACIONES_CLIENTE" name="D_OBSERVACIONES_CLIENTE">
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                    <md-checkbox ng-model="petition.B_VALIDACION_MOD" aria-label="" ng-true-value="'Si'" ng-false-value="'No'">
+                        Validación MOD
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-align="center none">
+                <md-button class="md-raised md-primary material-button f-montserrat" type="submit" ng-disabled="variables.isSubmitting">
+                    Crear Petición
+                    <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="variables.isSubmitting"></md-progress-circular>
+                </md-button>
+            </div>
+        </md-content>
+    </form>
+</div>
