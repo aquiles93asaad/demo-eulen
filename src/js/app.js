@@ -77,7 +77,7 @@ angular.module('EulenApp', [
         })
 
         /* -------
-            Cliente
+            Login
          ---------------------- */
 
         .state('login', {
@@ -89,18 +89,31 @@ angular.module('EulenApp', [
                 }
             }
         })
-        
 
         /* -------
-            Cliente
+            Lista de peticiones
          ---------------------- */
 
-        .state('client', {
-            url: '/cliente',
+        .state('petitions', {
+            url: '/cliente/peticiones',
             views: {
                 'application': {
-                    templateUrl: 'src/templates/client.html',
-                    controller: 'ClientController'
+                    templateUrl: 'src/templates/petitions.html',
+                    controller: 'PetitionsController'
+                }
+            }
+        })
+
+        /* -------
+            Formulario de petición
+         ---------------------- */
+
+        .state('petition', {
+            url: '/cliente/nueva-petición',
+            views: {
+                'application': {
+                    templateUrl: 'src/templates/petition.html',
+                    controller: 'PetitionController'
                 }
             },
             searchServices: 'SearchServices',
@@ -123,7 +136,7 @@ angular.module('EulenApp', [
                     params.queryFields = QUERY_FIELDS.cliente;
                     params.searchCriterias.push({
                         'fieldData': {
-                            'key': 'USER_ID',
+                            'key': 'USERNAME',
                             'value': $rootScope.userID,
                             'dataType': 'string'
                         },
@@ -206,11 +219,11 @@ angular.module('EulenApp', [
     RUN PHASE
 /* ------------------------------- */
 
-    .run(['$rootScope', '$transitions',
-        function($rootScope, $transitions){
+    .run(['$rootScope', '$transitions', '$location',
+        function($rootScope, $transitions, $location){
             $rootScope.adminToken = 'xOir4xDkMmtIVZ3zjmSql5%2FFsmjhSyLugwmCEX3P8g8%3D';
             $rootScope.token = $rootScope.adminToken;
-            $rootScope.serverEndpoint = 'http://localhost:8080/thuban-web/';
+            $rootScope.serverEndpoint = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/thuban-web/';
             $rootScope.showHeaderLogo = true;
             
             $transitions.onSuccess({}, function($transitions) {

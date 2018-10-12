@@ -2,8 +2,8 @@
 
 angular.module('EulenApp')
 
-.controller('ClientController', ['$scope', '$rootScope', 'data', 'DocumentServices',
-    function ($scope, $rootScope, data, DocumentServices){
+.controller('PetitionController', ['$scope', '$rootScope', '$state', '$mdToast', 'data', 'DocumentServices',
+    function ($scope, $rootScope, $state, $mdToast, data, DocumentServices){
         /* Scope variables */
         $scope.variables = {
             isSubmitting: false,
@@ -95,7 +95,8 @@ angular.module('EulenApp')
             B_TIEMPO_MES: 'No',
             B_TIEMPO_TRES_MES: 'No',
             B_TIEMPO_PERMANENTE: 'No',
-            B_VALIDACION_MOD: 'No'
+            B_VALIDACION_MOD: 'No',
+            D_ESTADO_SOLICITUD: 'Asignar TS'
         }
         /*****************/
 
@@ -150,6 +151,16 @@ angular.module('EulenApp')
                 })
                 .then(function(result) {
                     $scope.variables.isSubmitting = false;
+                    $scope.showSimpleToast = function() {
+                        var pinTo = $scope.getToastPosition();
+                    
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .textContent('La petición fue creada correctamente!')
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    };
                 })
                 .catch(function(error) {
                     $scope.variables.isSubmitting = false;
@@ -248,6 +259,8 @@ angular.module('EulenApp')
             } else if(letter == 'N') {
                 if(name == 'SUELDO_BASICO' || name == 'LATITUD' || name == 'LONGITUD') {
                     return 'decimal';
+                } else if(name == 'CIF' || name == 'NIF') {
+                    return 'string';
                 }
                 return 'integer';
             }
