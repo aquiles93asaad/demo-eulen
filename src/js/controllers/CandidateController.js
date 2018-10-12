@@ -4,6 +4,7 @@ angular.module('EulenApp')
 
 .controller('CandidateController', ['$scope', '$state',
     function ($scope, $state){
+        
         /* Scope variables */
         $scope.variables = {
             tab: 0,
@@ -195,6 +196,7 @@ angular.module('EulenApp')
 
         }
         /*****************/
+
 
         /* Scope functions */
         $scope.nextTab = function() {

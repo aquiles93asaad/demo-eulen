@@ -73,7 +73,8 @@ angular.module('EulenApp', [
                     templateUrl: 'src/templates/candidate.html',
                     controller: 'CandidateController'
                 }
-            }
+            },
+            
         })
 
         /* -------
