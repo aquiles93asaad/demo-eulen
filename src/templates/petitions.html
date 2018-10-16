@@ -1,4 +1,16 @@
 <!-- exact table from live demo -->
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+
+        <h2 flex md-truncate>Peticiones</h2>
+
+        <md-button class="md-fab md-mini md-hue-3" aria-label="Nueva Petición" ui-sref="petition">
+            <md-tooltip md-direction="left">Nueva Petición</md-tooltip>
+            <md-icon class="fa fa-plus"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
 <md-table-container>
     <table md-table md-progress="promise">
         <thead md-head>
@@ -25,4 +37,4 @@
 </md-table-container>
 
 <md-table-pagination md-limit="15" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{petitions.count}}"
-    md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+    md-on-paginate="getDesserts" md-page-select md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"></md-table-pagination>

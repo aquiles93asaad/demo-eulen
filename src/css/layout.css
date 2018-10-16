@@ -1,7 +1,7 @@
 body .page {
     border-top: 3px solid #1870ae;
     background-color: #f7f8fa;
-    height: 100%;
+    min-height: 100%;
 }
 
 body .page .site-branding {

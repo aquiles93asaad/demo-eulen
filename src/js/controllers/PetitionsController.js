@@ -2,8 +2,8 @@
 
 angular.module('EulenApp')
 
-.controller('PetitionsController', ['$rootScope', 'petitions',
-    function ($rootScope, petitions) {
-        console.log(petitions);
+.controller('PetitionsController', ['$scope', '$rootScope', 'petitions',
+    function ($scope, $rootScope, petitions) {
+        $scope.petitions = petitions;
     }
 ])

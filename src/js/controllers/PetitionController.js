@@ -11,8 +11,9 @@ angular.module('EulenApp')
         };
         
         $scope.genreOptions = [
-            {value: 'HOMBRE', label: 'Hombre'},
-            {value: 'MUJER', label: 'Mujer'}
+            {value: 'Masculino', label: 'Masculino'},
+            {value: 'Femenino', label: 'Femenino'},
+            {value: 'Indistinto', label: 'Indistinto'}
         ]
 
         $scope.disponibilidadesHorarias = [

@@ -2,70 +2,162 @@
 
 angular.module('EulenApp')
 
-.controller('CandidateController', ['$scope', '$state',
-    function ($scope, $state){
-        
+.controller('CandidateController', ['$scope', '$state', 'puestos',
+    function ($scope, $state, puestos){
         /* Scope variables */
         $scope.variables = {
             tab: 0,
-            maxTabs: 4
+            maxTabs: 4,
+            birthMaxDate: moment().subtract(18, 'years'),
+            tab2: 'true',
+            tab3: 'true',
+            tab4: 'true',
+            tab5: 'true',
+            tab6: 'true',
+            professions: 0,
+            exp2: false,
+            exp3: false,
+            exp4: false,
+            cv: null
         };
 
+        $scope.documentOptions = [
+            { value: 'DNI', label: 'DNI'},
+            { value: 'Pasaporte', label: 'Pasaporte'}
+        ]
+
         $scope.nationalities = [
-            { value: 'ALEMANIA', label: 'Alemania'},
-            { value: 'ESPANIA', label: 'España'},
-            { value: 'FRANCIA', label: 'Francia'},
-            { value: 'INGLATERRA', label: 'Inglaterra'}
+            { value: 'Alemana', label: 'Alemana'},
+            { value: 'Austríaca', label: 'Austríaca'},
+            { value: 'Belga', label: 'Belga'},
+            { value: 'Búlgara', label: 'Búlgara'},
+            { value: 'Española', label: 'Española'},
+            { value: 'Francesa', label: 'Francesa'},
+            { value: 'Griega', label: 'Griega'},
+            { value: 'Irlandesa', label: 'Irlandesa'},
+            { value: 'Italiana', label: 'Italiana'},
+            { value: 'Polaca', label: 'Polaca'},
+            { value: 'Portuguesa', label: 'Portuguesa'}
+        ];
+
+        $scope.countries = [
+            { value: 'Alemania', label: 'Alemania'},
+            { value: 'Austria', label: 'Austria'},
+            { value: 'Bélgica', label: 'Bélgica'},
+            { value: 'Bulgaria', label: 'Bulgaria'},
+            { value: 'Chipre', label: 'Chipre'},
+            { value: 'Croacia', label: 'Croacia'},
+            { value: 'Dinamarca', label: 'Dinamarca'},
+            { value: 'España', label: 'España'},
+            { value: 'Francia', label: 'Francia'},
+            { value: 'Grecia', label: 'Grecia'},
+            { value: 'Irlanda', label: 'Irlanda'},
+            { value: 'Italia', label: 'Italia'},
+            { value: 'Polonia', label: 'Polonia'},
+            { value: 'Portugal', label: 'Portugal'},
+        ];
+
+        $scope.states = [
+            { value: 'Álava', label: 'Álava'},
+            { value: 'Albacete', label: 'Albacete'},
+            { value: 'Alicante', label: 'Alicante'},
+            { value: 'Almería', label: 'Almería'},
+            { value: 'Asturias', label: 'Asturias'},
+            { value: 'Ávila', label: 'Ávila'},
+            { value: 'Badajoz', label: 'Badajoz'},
+            { value: 'Barcelona', label: 'Barcelona'},
+            { value: 'Burgos', label: 'Burgos'},
+            { value: 'Cáceres', label: 'Cáceres'},
+            { value: 'Cádiz', label: 'Cádiz'},
+            { value: 'Cantabria', label: 'Cantabria'},
+            { value: 'Castellón', label: 'Castellón'},
+            { value: 'Ciudad Real', label: 'Ciudad Real'},
+            { value: 'Córdoba', label: 'Córdoba'},
+            { value: 'Cuenca', label: 'Cuenca'},
+            { value: 'Gerona', label: 'Gerona'},
+            { value: 'Granada', label: 'Granada'},
+            { value: 'Guadalajara', label: 'Guadalajara'},
+            { value: 'Guipúzcoa', label: 'Guipúzcoa'},
+            { value: 'Huelva', label: 'Huelva'},
+            { value: 'Huesca', label: 'Huesca'},
+            { value: 'Jaén', label: 'Jaén'},
+            { value: 'La Coruña', label: 'La Coruña'},
+            { value: 'La Rioja', label: 'La Rioja'},
+            { value: 'Las Palmas', label: 'Las Palmas'},
+            { value: 'León', label: 'León'},
+            { value: 'Lérida', label: 'Lérida'},
+            { value: 'Lugo', label: 'Lugo'},
+            { value: 'Madrid', label: 'Madrid'},
+            { value: 'Málaga', label: 'Málaga'},
+            { value: 'Murcia', label: 'Murcia'},
+            { value: 'Navarra', label: 'Navarra'},
+            { value: 'Orense', label: 'Orense'},
+            { value: 'Palencia', label: 'Palencia'},
+            { value: 'Pontevedra', label: 'Pontevedra'},
+            { value: 'Salamanca', label: 'Salamanca'},
+            { value: 'Santa Cruz de Tenerife', label: 'Santa Cruz de Tenerife'},
+            { value: 'Segovia', label: 'Segovia'},
+            { value: 'Sevilla', label: 'Sevilla'},
+            { value: 'Soria', label: 'Soria'},
+            { value: 'Tarragona', label: 'Tarragona'},
+            { value: 'Teruel', label: 'Teruel'},
+            { value: 'Toledo', label: 'Toledo'},
+            { value: 'Valencia', label: 'Valencia'},
+            { value: 'Valladolid', label: 'Valladolid'},
+            { value: 'Vizcaya', label: 'Vizcaya'},
+            { value: 'Zamora', label: 'Zamora'},
+            { value: 'Zaragoza', label: 'Zaragoza'}
         ];
 
         $scope.civilStatus = [
-            { value: 'SOLTERO', label: 'Soltero'},
-            { value: 'CASADO', label: 'Casado'},
-            { value: 'CONVIVIENTE', label: 'Conviviente'},
-            { value: 'SEPARADO', label: 'Separado'},
-            { value: 'VIUDO', label: 'Viudo'},
-            { value: 'DIVORCIADO', label: 'Divorciado'}
+            { value: 'Soltero', label: 'Soltero'},
+            { value: 'Casado', label: 'Casado'},
+            { value: 'Conviviente', label: 'Conviviente'},
+            { value: 'Separado', label: 'Separado'},
+            { value: 'Viudo', label: 'Viudo'},
+            { value: 'Divorciado', label: 'Divorciado'}
         ];
 
         $scope.announcement = [
-            { value: 'AMIGOS', label:'Amigos'},
-            { value: 'PERIODICO', label:'Periodicos'},
-            { value: 'MUNICIPALIDAD', label:'Municipalidad'},
-            { value: 'VOLANTE', label:'Volante'},
-            { value: 'INTERNET', label:'Internet'},
-            { value: 'FERIA', label:'Feria'},
-            { value: 'PROGRAMA', label:'Programa'},
-            { value: 'REDES SOCIALES', label:'Redes sociales'},
-            { value: 'REFERIDOS', label:'Referidos'},
-            { value: 'EX-TRABAJADORES', label:'Ex-trabajadores'},
-            { value: 'OTROS', label:'Otros'}
+            { value: 'Amigos', label:'Amigos'},
+            { value: 'Periódico', label:'Periódico'},
+            { value: 'Municipalidad', label:'Municipalidad'},
+            { value: 'Volante', label:'Volante'},
+            { value: 'Internet', label:'Internet'},
+            { value: 'Feria', label:'Feria'},
+            { value: 'Programa de radio', label:'Programa de radio'},
+            { value: 'Redes sociales', label:'Redes sociales'},
+            { value: 'Referidos', label:'Referidos'},
+            { value: 'Ex-trabajadores', label:'Ex-trabajadores'},
+            { value: 'Otros', label:'Otros'}
         ];
 
         $scope.licenses = [
             { value: 'No', label:'No'},
-            { value:'Motocicleta', label:'Motocicleta'},
-            { value:'Automovil', label:'Automovil'},
-            { value:'Camiones menores a 3.500kg', label:'Camiones menores a 3.500kg'},
-            { value:'Camiones mayores a 3.500kg', label:'Camiones mayores a 3.500kg'},
-            { value:'', label:'Mercancias peligrosas'}
+            { value: 'Motocicleta', label: 'Motocicleta'},
+            { value: 'Automovil', label: 'Automovil'},
+            { value: 'Camión < 3.500kg', label: 'Camión < 3.500kg'},
+            { value: 'Camión > 3.500kg', label: 'Camión > 3.500kg'},
+            { value: 'Autobús', label: 'Autobús'},
+            { value: 'Mercancías Peligrosas', label: 'Mercancías Peligrosas'}
         ];
 
         $scope.computerLevels =[
-            { value: 'Usuario', label:'Medio'},
+            { value: 'Usuario', label:'Básico'},
             { value: 'Usuario Avanzado', label:'Avanzado'},
             { value: 'Experto', label:'Experto'}
         ];
 
-        $scope.LanguageLevel =[
-            { value: 'Basico', label:'Basico'},
-            { value: 'Medio', label:'Medio'},
+        $scope.languageLevels =[
+            { value: 'Básico', label:'Básico'},
+            { value: 'Intermedio', label:'Intermedio'},
             { value: 'Avanzado', label:'Avanzado'},
-            { value: 'Bilingue', label:'Bilingue'}
+            { value: 'Bilingüe', label:'Bilingüe'}
         ];
 
         $scope.genreOptions = [
-            {value: 'HOMBRE', label: 'Hombre'},
-            {value: 'MUJER', label: 'Mujer'}
+            {value: 'Masculino', label: 'Masculino'},
+            {value: 'Femenino', label: 'Femenino'}
         ]
 
         $scope.disponibilidadesHorarias = [
@@ -95,6 +187,10 @@ angular.module('EulenApp')
             { value: 'B_TIEMPO_PERMANENTE', label: 'Permanente'}
         ];
 
+        $scope.areas = [];
+        var areasObject = {};
+        processPuestos(puestos);
+
         $scope.candidate = {
             D_APELLIDO: null,
             D_SEGUNDO_APELLIDO: null,
@@ -102,7 +198,7 @@ angular.module('EulenApp')
             D_TIPO_DOCUMENTO: null,
             N_IDENTIDAD: null,
             N_SEGURIDAD_SOCIALD: null,
-            D_PAIS: null,
+            D_PAIS: 'España',
             D_PROVINCIA: null,
             D_LOCALIDAD: null,
             D_DOMICILIO: null,
@@ -113,6 +209,7 @@ angular.module('EulenApp')
             F_NACIMIENTO: null,
             N_EDAD: null,
             D_ESTADO_CIVIL: null,
+            D_NACIONALIDAD: 'Española',
             N_HIJOS: null,
             D_SEXO: null,
             D_LICENCIA: null,
@@ -124,7 +221,9 @@ angular.module('EulenApp')
             F_FIN_VISA_TRABAJO: null,
             D_MEDIO_CONVOCATORIA: null,
             DISPONIBLIDAD_HORARIA: null,
-            DISPONIBLIDAD_CONTRATO: null,
+            DISPONIBLIDAD_DIARIA: null,
+            TIPO_CONTRATO: null,
+            N_BRUTO_ANUAL: null,
             B_DISPO_MANANA: 'No',
             B_DISPO_TARDE: 'No',
             B_DISPO_NOCHE: 'No',
@@ -143,7 +242,7 @@ angular.module('EulenApp')
             B_TIEMPO_MES: 'No',
             B_TIEMPO_TRES_MES: 'No',
             B_TIEMPO_PERMANENTE: 'No',
-            B_SIN_FORMACIÓN: 'No',
+            B_SIN_FORMACION: 'No',
             B_FORM_PRIMARIA: 'No',
             B_CICLO_FORMATIVO: 'No',
             B_FORM_SECUNDARIA: 'No',
@@ -180,9 +279,13 @@ angular.module('EulenApp')
             D_OTRO_ORAL: null,
             D_OTRO_ESCRITO: null,
             B_OFFICE: 'No',
+            D_OFFICE_NIVEL: null,
             B_WORD: 'No',
+            D_WORD_NIVEL: null,
             B_EXCEL: 'No',
+            D_EXCEL_NIVEL: null,
             B_OTROS: 'No',
+            D_OTROS_NIVEL: null,
             D_OFFICE_NIVEL: null,
             D_WORD_NIVEL: null,
             D_EXCEL_NIVEL: null,
@@ -192,24 +295,122 @@ angular.module('EulenApp')
             D_EXPERIENCIA_0: null,
             D_FUNCIONES_0: null,
             F_FECHA_COMIENZO_0: null,
-            B_CERTIFICACION_DISCAPACIDAD: 'No'
-
-        }
+            B_EXPERIENCIA_1: 'No',
+            D_EXPERIENCIA_1: null,
+            D_FUNCIONES_1: null,
+            F_FECHA_COMIENZO_1: null,
+            B_EXPERIENCIA_2: 'No',
+            D_EXPERIENCIA_2: null,
+            D_FUNCIONES_2: null,
+            F_FECHA_COMIENZO_2: null,
+            B_EXPERIENCIA_3: 'No',
+            D_EXPERIENCIA_3: null,
+            D_FUNCIONES_3: null,
+            F_FECHA_COMIENZO_3: null,
+            B_CERTIFICACION_DISCAPACIDAD: 'No',
+            D_PUESTO1: null,
+            D_PUESTO2: null,
+            D_PUESTO3: null,
+            PUESTOS: null
+        };
         /*****************/
 
-
         /* Scope functions */
-        $scope.nextTab = function() {
+        $scope.nextTab = function(formEnable) {
             $scope.variables.tab++;
-        }
+            $scope.variables[formEnable] = 'false';
+        };
 
         $scope.previousTab = function() {
             $scope.variables.tab--;
-        }
+        };
+
+        $scope.calculateAge = function() {
+            $scope.candidate.N_EDAD = moment().diff($scope.candidate.F_NACIMIENTO, 'years');
+        };
+
+        $scope.$watch('candidate.PUESTOS', function(newValue, oldValue) {
+            if (newValue && newValue.length > 3) {
+                $scope.candidate.PUESTOS = oldValue;
+            }
+        });
+
+        $scope.setBoolean = function(name) {
+            if(name == 'OTRO') {
+                if($scope.candidate['D_OTRO']) {
+                    $scope.candidate['B_OTRO_IDIOMA'] = 'Si';
+                } else {
+                    $scope.candidate['B_OTRO_IDIOMA'] = 'No';
+                    $scope.candidate['D_OTRO_ORAL'] = null;
+                    $scope.candidate['D_OTRO_ESCRITO'] = null;
+                }
+            } else {
+                var realName = name.substring(name.indexOf('_') + 1, name.length);
+                if($scope.candidate[name]) {
+                    $scope.candidate['B_' + realName] = 'Si';
+                } else {
+                    $scope.candidate['B_' + realName] = 'No';
+                }
+            }
+        };
+
+        $scope.skillBoolean = function(name, isLanguage) {
+            if($scope.candidate['B_' + name] == 'No') {
+                if(isLanguage) {
+                    $scope.candidate['D_' + name + '_ORAL'] = null;
+                    $scope.candidate['D_' + name + '_ESCRITO'] = null;
+                } else {
+                    $scope.candidate['D_' + name + '_NIVEL'] = null;
+                }
+            }
+        };
+        
+        $scope.addProfession = function() {
+            $scope.variables.professions++;
+            $scope.variables['exp' + $scope.variables.professions] = true;
+        };
+
+        $scope.deleteProfession = function(n) {
+            $scope.variables.professions--;
+            $scope.variables['exp' + n] = false;
+            $scope.candidate['B_EXPERIENCIA_' + n] = 'No';
+            $scope.candidate['D_EXPERIENCIA_' + n] = null;
+            $scope.candidate['D_FUNCIONES_' + n] = null;
+            $scope.candidate['F_FECHA_COMIENZO_' + n] = null;
+            $scope.candidate['F_FECHA_FIN_' + n] = null;
+        };
+
         /*******************/
         
         /* Private fucntions */
-        
+        function processPuestos(puestos) {
+            for (var i = 0; i < puestos.length; i++) {
+                var area = {
+                    D_AREA: null,
+                    puestos: []
+                };
+                
+                var puesto = null;
+    
+                for (var j = 0; j < puestos[i].fields.length; j++) {
+                    if(puestos[i].fields[j].key == 'D_AREA') {
+                        area.D_AREA = puestos[i].fields[j].value;
+                    } else if (puestos[i].fields[j].key == 'D_PUESTO') {
+                        puesto = puestos[i].fields[j].value;
+                    }
+                    
+                    if(typeof areasObject[area.D_AREA] === 'undefined') {
+                        areasObject[area.D_AREA] = area;
+                    }
+                }
+
+                areasObject[area.D_AREA].puestos.push(puesto);
+            }
+    
+            angular.forEach(areasObject, function(area, d_area) {
+                $scope.areas.push(area);
+            });
+        }
         /*********************/
     }
 ])

@@ -1,217 +1,284 @@
-<div layout="row">
-    <h2><span>Informatica</span></h2>
-</div>
+<form ng-cloak name="form4" novalidate>
+    <div layout="row">
+        <h2><span>Informática</span></h2>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_OFFICE" aria-label="">
-            Office
-        </md-checkbox>
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex="20">
+            <md-checkbox ng-model="candidate.B_OFFICE" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('OFFICE', false)">
+                Office
+            </md-checkbox>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_WORD" aria-label="">
-            Word
-        </md-checkbox>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_OFFICE_NIVEL" layout="row" layout-align="space-around center" ng-required="candidate.B_OFFICE == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in computerLevels" ng-value="level.value" ng-disabled="candidate.B_OFFICE == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_OFFICE_NIVEL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
+    
+    <div layout="row">
+        <md-input-container class="md-block" flex="20">
+            <md-checkbox ng-model="candidate.B_WORD" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('WORD', false)">
+                Word
+            </md-checkbox>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_EXCEL" aria-label="">
-            Excel
-        </md-checkbox>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_WORD_NIVEL" layout="row" layout-align="space-around center" ng-required="candidate.B_WORD == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in computerLevels" ng-value="level.value" ng-disabled="candidate.B_WORD == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_WORD_NIVEL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
+    <div layout="row">
+        <md-input-container class="md-block" flex="20">
+            <md-checkbox ng-model="candidate.B_EXCEL" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('EXCEL', false)">
+                Excel
+            </md-checkbox>
+        </md-input-container>
 
-</div>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_EXCEL_NIVEL" layout="row" layout-align="space-around center" ng-required="candidate.B_EXCEL == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in computerLevels" ng-value="level.value" ng-disabled="candidate.B_EXCEL == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_EXCEL_NIVEL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex>
-        <label>Nivel Office</label>
-        <md-select ng-model="candidate.D_OFFICE_NIVEL" id="D_OFFICE_NIVEL" name="D_OFFICE_NIVEL" required>
-            <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
-        </md-select>
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <label>Otros</label>
+            <input ng-model="candidate.D_OTROS" aria-label="D_OTROS" id="D_OTROS" name="D_OTROS" md-maxlength="40" ng-change="setBoolean('D_OTROS')">
+            <div ng-messages="form4.D_OTROS.$error">
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <label>Nivel Word</label>
-        <md-select ng-model="candidate.D_WORD_NIVEL" id="D_WORD_NIVEL" name="D_WORD_NIVEL" required>
-            <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
-        </md-select>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_OTROS_NIVEL" layout="row" layout-align="space-around center" ng-required="candidate.B_OTROS == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in computerLevels" ng-value="level.value" ng-disabled="candidate.B_OTROS == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_OTROS_NIVEL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>  
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <label>Nivel Excel</label>
-        <md-select ng-model="candidate.D_EXCEL_NIVEL" id="D_EXCEL_NIVEL" name="D_EXCEL_NIVEL" required>
-            <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
-        </md-select>
-    </md-input-container>
+    <div layout="row">
+        <h2><span>Idiomas</span></h2>
+    </div>
 
-</div>
+    <div layout="row" layout-align="center center">
+        <div class="md-block" flex-offset="15" flex>
+            <label>Nivel Oral</label>
+        </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <md-checkbox ng-model="candidate.B_OTROS" aria-label="">
-            Otros
-        </md-checkbox>
-    </md-input-container>
+        <div class="md-block" flex>
+            <label>Nivel Escrito</label>
+        </div>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <label>Nombre</label>
-        <input ng-model="candidate.D_COMPLEMENTARIA" id="D_COMPLEMENTARIA" name="D_COMPLEMENTARIA" required
-            md-maxlength="40">
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <md-checkbox ng-model="candidate.B_ESPANOL" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('ESPANOL', true)">
+                Español
+            </md-checkbox>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <label>Nivel</label>
-        <md-select ng-model="candidate.D_OTROS" id="D_OTROS" name="D_OTROS" required>
-            <md-option ng-value="level.value" ng-repeat="level in computerLevels">{{level.label}}</md-option>
-        </md-select>
-    </md-input-container>
-</div>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_ESPANOL_ORAL" layout="row" ng-required="candidate.B_ESPANOL == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_ESPANOL == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_ESPANOL_ORAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-<div layout="row">
-    <h2><span>Idiomas</span></h2>
-</div>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_ESPANOL_ESCRITO" layout="row" ng-required="candidate.B_ESPANOL == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_ESPANOL == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_ESPANOL_ESCRITO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex-offset="15" flex>
-        <label>Nivel Oral</label>
-    </md-input-container>
-    <md-input-container class="md-block" flex>
-        <label>Nivel Escrito</label>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <md-checkbox ng-model="candidate.B_INGLES" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('INGLES', true)">
+                Ingles
+            </md-checkbox>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <label>Español</label>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_INGLES_ORAL" layout="row" ng-required="candidate.B_INGLES == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_INGLES == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_INGLES_ORAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_ESPANOL_ORAL" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" value="{{level.value}}">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_INGLES_ESCRITO" layout="row" ng-required="candidate.B_INGLES == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_INGLES == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_INGLES_ESCRITO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_ESPANOL_ESCRITO" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" value="{{level.value}}">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <md-checkbox ng-model="candidate.B_PORTUGUES" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('PORTUGUES', true)">
+                Portugues
+            </md-checkbox>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <label>Ingles</label>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_PORTUGUES_ORAL" layout="row" ng-required="candidate.B_PORTUGUES == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_PORTUGUES == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_PORTUGUES_ORAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_INGLES_ORAL" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_PORTUGUES_ESCRITO" layout="row" ng-required="candidate.B_PORTUGUES == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_PORTUGUES == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_PORTUGUES_ESCRITO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_INGLES_ESCRITO" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <md-checkbox ng-model="candidate.B_CATALAN" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('CATALAN', true)">
+                Catalan
+            </md-checkbox>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <label>Portugues</label>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_CATALAN_ORAL" layout="row" ng-required="candidate.B_CATALAN == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_CATALAN == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_CATALAN_ORAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_PORTUGUES_ORAL" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_CATALAN_ESCRITO" layout="row" ng-required="candidate.B_CATALAN == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_CATALAN == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_CATALAN_ESCRITO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_PORTUGUES_ESCRITO" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <md-checkbox ng-model="candidate.B_EUSKERA" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-change="skillBoolean('EUSKERA', true)">
+                Euskera
+            </md-checkbox>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <label>Catalan</label>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_EUSKERA_ORAL" layout="row" ng-required="candidate.B_EUSKERA == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_EUSKERA == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_EUSKERA_ORAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_CATALAN_ORAL" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_EUSKERA_ESCRITO" layout="row" ng-required="candidate.B_EUSKERA == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_EUSKERA == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_EUSKERA_ESCRITO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_CATALAN_ESCRITO" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="15">
+            <label>Otro idioma</label>
+            <input ng-model="candidate.D_OTRO" aria-label="D_OTRO" id="D_OTRO" name="D_OTRO" md-maxlength="15" ng-change="setBoolean('OTRO')">
+            <div ng-messages="form4.D_OTRO.$error">
+                <div ng-message="md-maxlength">Máximo 15 caracteres</div>
+            </div>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <label>Euskera</label>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_OTRO_ORAL" layout="row" ng-required="candidate.B_OTRO_IDIOMA == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_OTRO_IDIOMA == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_OTRO_ORAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_EUSKERA_ORAL" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-radio-group ng-model="candidate.D_OTRO_ESCRITO" layout="row" ng-required="candidate.B_OTRO_IDIOMA == 'Si'">
+                <md-radio-button class="md-primary" ng-repeat="level in languageLevels" ng-value="level.value" ng-disabled="candidate.B_OTRO_IDIOMA == 'No'">
+                    {{level.label}}
+                </md-radio-button>
+            </md-radio-group>
+            <div ng-messages="form4.D_OTRO_ESCRITO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_EUSKERA_ESCRITO" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-</div>
-
-<div layout="row">
-    <md-input-container class="md-block" flex=15>
-        <label>Idioma</label>
-        <input ng-model="candidate.D_OTRO" id="D_OTRO" name="D_OTRO" required md-maxlength="15">
-    </md-input-container>
-
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_OTRO_ORAL" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-
-    <md-input-container class="md-block" flex>
-        <md-radio-group ng-model="candidate.D_OTRO_ESCRITO" layout="row">
-            <md-radio-button class="md-primary" ng-repeat="level in LanguageLevel" ng-value="level.value">
-                {{level.label}}
-            </md-radio-button>
-        </md-radio-group>
-    </md-input-container>
-</div>
-
+    <div layout="row" layout-align="space-between none">
+        <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab5')" ng-disabled="!form4.$valid">Siguiente</md-button>
+    </div>
+</form>

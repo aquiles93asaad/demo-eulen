@@ -1,85 +1,132 @@
-<div layout="row">
-    <h2><span>Formación</span></h2>
-</div>
+<form ng-cloak name="form3" novalidate>
+    <div layout="row">
+        <h2><span>Formación</span></h2>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_SIN_FORMACION" aria-label="">
-            Sin formacion
-        </md-checkbox>
-    </md-input-container>
-</div>
-<div layout="row">
-    <md-input-container class="md-block" flex=20>
-        <label>Formacion Primaria</label>
-        <input ng-model="candidate.D_FORM_PRIMARIA" id="D_FORM_PRIMARIA" name="D_FORM_PRIMARIA" required md-maxlength="40">
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex>
+            <md-checkbox ng-model="candidate.B_SIN_FORMACION" aria-label="" ng-true-value="'Si'" ng-false-value="'No'">
+                Sin formacion
+            </md-checkbox>
+        </md-input-container>
+    </div>
+    
+    <div layout="row">
+        <md-input-container class="md-block" flex="70">
+            <label>Formacion primaria</label>
+            <input ng-model="candidate.D_FORM_PRIMARIA" id="D_FORM_PRIMARIA" name="D_FORM_PRIMARIA" ng-required="candidate.B_SIN_FORMACION == 'No'" md-maxlength="40" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+            <div ng-messages="form3.D_FORM_PRIMARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <label>Fin Estudios Primarios</label>
-        <md-datepicker ng-model="candidate.F_FIN_PRIMARIA" id="F_FIN_PRIMARIA" name="F_FIN_PRIMARIA" required></md-datepicker>
-    </md-input-container>
-    <md-input-container class="md-block" flex=20>
-        <label>Titulo ciclo formativo</label>
-        <input ng-model="candidate.D_CICLO_FORMATIVO" id="D_CICLO_FORMATIVO" name="D_CICLO_FORMATIVO" required
-            md-maxlength="40">
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <label>Fin estudios primarios</label>
+            <md-datepicker ng-model="candidate.F_FIN_PRIMARIA" id="F_FIN_PRIMARIA" name="F_FIN_PRIMARIA" ng-required="candidate.B_SIN_FORMACION == 'No'" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_PRIMARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <label>Fin ciclo formativo</label>
-        <md-datepicker ng-model="candidate.F_FIN_FORMATIVO" id="F_FIN_FORMATIVO" name="F_FIN_FORMATIVO" required></md-datepicker>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="70">
+            <label>Titulo ciclo formativo</label>
+            <input ng-model="candidate.D_CICLO_FORMATIVO" id="D_CICLO_FORMATIVO" name="D_CICLO_FORMATIVO" md-maxlength="40" ng-change="setBoolean('D_CICLO_FORMATIVO')" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+            <div ng-messages="form3.D_CICLO_FORMATIVO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=70>
-        <label>Titulo secundaria</label>
-        <input ng-model="candidate.D_FORM_SECUNDARIA" id="D_FORM_SECUNDARIA" name="D_FORM_SECUNDARIA" required
-            md-maxlength="40">
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <label>Fin ciclo formativo</label>
+            <md-datepicker ng-model="candidate.F_FIN_FORMATIVO" id="F_FIN_FORMATIVO" name="F_FIN_FORMATIVO" ng-required="candidate.D_CICLO_FORMATIVO != null && candidate.D_CICLO_FORMATIVO != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_FORMATIVO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex=30>
-        <label>Fin estudios secundaria</label>
-        <md-datepicker ng-model="candidate.F_FIN_SECUNDARIA" id="F_FIN_SECUNDARIA" name="F_FIN_SECUNDARIA" required></md-datepicker>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="70">
+            <label>Titulo secundaria</label>
+            <input ng-model="candidate.D_FORM_SECUNDARIA" id="D_FORM_SECUNDARIA" name="D_FORM_SECUNDARIA" md-maxlength="40" ng-change="setBoolean('D_FORM_SECUNDARIA')" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+            <div ng-messages="form3.D_FORM_SECUNDARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=70>
-        <label>Titulo universidad</label>
-        <input ng-model="candidate.D_FORM_UNIVERSITARIA" id="D_FORM_UNIVERSITARIA" name="D_FORM_UNIVERSITARIA" required
-            md-maxlength="40">
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <label>Fin estudios secundaria</label>
+            <md-datepicker ng-model="candidate.F_FIN_SECUNDARIA" id="F_FIN_SECUNDARIA" name="F_FIN_SECUNDARIA" ng-required="candidate.D_FORM_SECUNDARIA != null && candidate.D_FORM_SECUNDARIA != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_SECUNDARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex=30>
-        <label>Fin estudios universidad</label>
-        <md-datepicker ng-model="candidate.F_FIN_UNIVERSITARIA" id="F_FIN_UNIVERSITARIA" name="F_FIN_UNIVERSITARIA"
-            required></md-datepicker>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="70">
+            <label>Titulo universitario</label>
+            <input ng-model="candidate.D_FORM_UNIVERSITARIA" id="D_FORM_UNIVERSITARIA" name="D_FORM_UNIVERSITARIA" md-maxlength="40" ng-change="setBoolean('D_FORM_UNIVERSITARIA')" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+            <div ng-messages="form3.D_FORM_UNIVERSITARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex=20>
-        <label>Titulo de certificacion</label>
-        <input ng-model="candidate.D_CERTIFICACION" id="D_CERTIFICACION" name="D_CERTIFICACION" required md-maxlength="40">
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <label>Fin estudios universitarios</label>
+            <md-datepicker ng-model="candidate.F_FIN_UNIVERSITARIA" id="F_FIN_UNIVERSITARIA" name="F_FIN_UNIVERSITARIA" ng-required="candidate.D_FORM_UNIVERSITARIA != null && candidate.D_FORM_UNIVERSITARIA != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_UNIVERSITARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex=30>
-        <label>Fin de certificacion</label>
-        <md-datepicker ng-model="candidate.F_FIN_CERTIFICACION" id="F_FIN_CERTIFICACION" name="F_FIN_CERTIFICACION"
-            required></md-datepicker>
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex="70">
+            <label>Titulo de certificacion</label>
+            <input ng-model="candidate.D_CERTIFICACION" id="D_CERTIFICACION" name="D_CERTIFICACION" md-maxlength="40" ng-change="setBoolean('D_CERTIFICACION')" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+            <div ng-messages="form3.D_CERTIFICACION.$error">
+                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex=20>
-        <label>Titulo complementaria</label>
-        <input ng-model="candidate.D_COMPLEMENTARIA" id="D_COMPLEMENTARIA" name="D_COMPLEMENTARIA" required
-            md-maxlength="40">
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <label>Fecha de certificacion</label>
+            <md-datepicker ng-model="candidate.F_FIN_CERTIFICACION" id="F_FIN_CERTIFICACION" name="F_FIN_CERTIFICACION" ng-required="candidate.D_CERTIFICACION != null && candidate.D_CERTIFICACION != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_CERTIFICACION.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex=30>
-        <label>Fin complementaria</label>
-        <md-datepicker ng-model="candidate.F_FIN_COMPLEMENTARIA" id="F_FIN_COMPLEMENTARIA" name="F_FIN_COMPLEMENTARIA"
-            required></md-datepicker>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="70">
+            <label>Titulo complementaria</label>
+            <input ng-model="candidate.D_COMPLEMENTARIA" id="D_COMPLEMENTARIA" name="D_COMPLEMENTARIA" md-maxlength="40" ng-change="setBoolean('D_COMPLEMENTARIA')" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+            <div ng-messages="form3.D_COMPLEMENTARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
+            </div>
+        </md-input-container>
 
+        <md-input-container class="md-block" flex>
+            <label>Fecha titulo complementario</label>
+            <md-datepicker ng-model="candidate.F_FIN_COMPLEMENTARIA" id="F_FIN_COMPLEMENTARIA" name="F_FIN_COMPLEMENTARIA" ng-required="candidate.D_COMPLEMENTARIA != null && candidate.D_COMPLEMENTARIA != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_COMPLEMENTARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <div layout="row" layout-align="space-between none">
+        <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab4')" ng-disabled="!form3.$valid">Siguiente</md-button>
+    </div>
+</form>

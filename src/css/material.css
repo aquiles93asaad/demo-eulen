@@ -1,5 +1,6 @@
 md-content {
     background-color: transparent;
+    overflow-x: hidden;
     }
     md-content md-tabs .md-tab .md-ripple-container,
     .md-ripple-container {
@@ -11,11 +12,11 @@ md-content {
     }
 
 .md-datepicker-input-container {
-    width: 75%;
+    width: 80%;
 }
 
 .material-button.md-button.md-raised {
-    background-color: #0165ac !important;
+    background-color: #0165ac;
     color: white;
     text-transform: capitalize;
     min-width: 150px;
@@ -24,8 +25,13 @@ md-content {
     font-size: 16px;
 }
 
-.material-button.md-button.md-raised:hover {
+.material-button.md-button.md-raised[disabled] {
+    background-color: rgba(0,0,0,0.12);
+}
+
+.material-button.md-button.md-raised:not([disabled]):hover {
     opacity: .8;
+    background-color: #0165ac;
 }
 
 md-checkbox.md-default-theme.md-checked .md-icon,
@@ -47,4 +53,37 @@ md-checkbox.md-checked .md-ink-ripple {
 
 .md-button md-progress-circular path {
     stroke: white !important;
+}
+
+.md-fab.md-mini.md-button {
+    background-color: #0165ac !important;
+}
+
+.md-fab.md-mini.md-button md-icon {
+    vertical-align: baseline;
+}
+
+md-toolbar.md-hue-2:not(.md-menu-toolbar) {
+    background-color: transparent;
+    color: black;
+}
+
+md-table-pagination .label {
+    color: black;
+}
+
+.md-block md-checkbox {
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.md-block .hint {
+    font-size: 12px;
+    line-height: 20px;
+    color: grey;
+}
+
+md-input-container .md-datepicker-input.md-input {
+    max-width: none;
 }

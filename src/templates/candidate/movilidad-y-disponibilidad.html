@@ -1,92 +1,142 @@
-<div layout="row">
-    <h2><span>Movilidad</span></h2>
-</div>
+<form ng-cloak name="form2" novalidate>
+    <div layout="row">
+        <h2><span>Movilidad</span></h2>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex="50">
-        <label>Licencia</label>
-        <md-select ng-model="candidate.D_LICENCIA" id="D_LICENCIA" name="D_LICENCIA" required>
-            <md-option ng-value="license.value" ng-repeat="license in licenses">{{license.label}}</md-option>
-        </md-select>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex="50">
+            <label>Licencia</label>
+            <md-select ng-model="candidate.D_LICENCIA" id="D_LICENCIA" name="D_LICENCIA" required>
+                <md-option ng-value="license.value" ng-repeat="license in licenses">{{license.label}}</md-option>
+            </md-select>
+            <div ng-messages="form2.D_LICENCIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_VEHICULO_PROPIO" aria-label="">
-            Vehiculo Propio
-        </md-checkbox>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-checkbox ng-model="candidate.B_VEHICULO_PROPIO" aria-label="">
+                Vehiculo Propio
+            </md-checkbox>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_TRABAJO_ACTUAL" aria-label="">
-            Trabajo Actual
-        </md-checkbox>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-checkbox ng-model="candidate.B_TRABAJO_ACTUAL" aria-label="">
+                Trabajo Actual
+            </md-checkbox>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_INSCRIPCION_DESEMPLEO" aria-label="">
-            Inscripto Desempleo
-        </md-checkbox>
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex="50">
+            <label>Medio de convocacion</label>
+            <md-select ng-model="candidate.D_MEDIO_CONVOCATORIA" id="D_MEDIO_CONVOCATORIA" name="D_MEDIO_CONVOCATORIA" required>
+                <md-option ng-value="ad.value" ng-repeat="ad in announcement">{{ad.label}}</md-option>
+            </md-select>
+            <div ng-messages="form2.D_MEDIO_CONVOCATORIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
 
-    <md-input-container class="md-block" flex>
-        <md-checkbox ng-model="candidate.B_COBRO_PRESTACION" aria-label="">
-            Cobro de prestaciones
-        </md-checkbox>
-    </md-input-container>
-</div>
+        <md-input-container class="md-block" flex>
+            <md-checkbox ng-model="candidate.B_INSCRIPCION_DESEMPLEO" aria-label="">
+                Inscripto Desempleo
+            </md-checkbox>
+        </md-input-container>
 
-<div layout="row">
-    <md-input-container class="md-block" flex="25">
-        <md-checkbox ng-model="candidate.B_VISA_TRABAJO" aria-label="">
-            Visa de trabajo
-        </md-checkbox>
-    </md-input-container>
+        <md-input-container class="md-block" flex>
+            <md-checkbox ng-model="candidate.B_COBRO_PRESTACION" aria-label="">
+                Cobro de prestaciones
+            </md-checkbox>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex="35">
-        <label>Fin visa de trabajo</label>
-        <md-datepicker ng-model="candidate.F_FIN_VISA_TRABAJO" id="F_FIN_VISA_TRABAJO" name="F_FIN_VISA_TRABAJO"></md-datepicker>
-    </md-input-container>
+    <div layout="row">
+        <md-input-container class="md-block" flex>
+            <label>Puesto</label>
+            <md-select aria-label="PUESTOS" ng-model="candidate.PUESTOS" id="D_PUESTO" name="D_PUESTO" ng-change="puestoChange()" required multiple>
+                <md-optgroup ng-repeat="area in areas" label="{{area.D_AREA}}">
+                    <md-option value="{{puesto}}" ng-repeat="puesto in area.puestos">{{puesto}}</md-option>
+                </md-optgroup>
+            </md-select>
+            <div class="hint">Se pueden elegir hasta 3 puestos.</div>
+            <div ng-messages="form2.D_PUESTO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-    <md-input-container class="md-block" flex>
-        <label>Medio de convocacion</label>
-        <md-select ng-model="candidate.D_MEDIO_CONVOCATORIA" id="D_MEDIO_CONVOCATORIA" name="D_MEDIO_CONVOCATORIA"
-            required>
-            <md-option ng-value="ad.value" ng-repeat="ad in announcement">{{ad.label}}</md-option>
-        </md-select>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <h2><span>Disponibilidad</span></h2>
+    </div>
 
-<div layout="row">
-    <h2><span>Disponibilidad</span></h2>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex>
+            <label>Disponibilidad horaria</label>
+            <md-select ng-model="candidate.DISPONIBLIDAD_HORARIA" id="DISPONIBLIDAD_HORARIA" name="DISPONIBLIDAD_HORARIA" multiple required>
+                <md-option ng-value="horario.value" ng-repeat="horario in disponibilidadesHorarias">{{horario.label}}</md-option>
+            </md-select>
+            <div ng-messages="form2.DISPONIBLIDAD_HORARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex>
-        <label>Disponibilidad horaria</label>
-        <md-select ng-model="candidate.DISPONIBILIDAD_HORARIA" multiple>
-            <md-optgroup label="Meats">
-                <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'meat' }">{{topping.name}}</md-option>
-            </md-optgroup>
-            <md-optgroup label="Veggies">
-                <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'veg' }">{{topping.name}}</md-option>
-            </md-optgroup>
-        </md-select>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <md-input-container class="md-block" flex>
+            <label>Disponibilidad diaria</label>
+            <md-select ng-model="candidate.DISPONIBLIDAD_DIARIA" id="DISPONIBLIDAD_DIARIA" name="DISPONIBLIDAD_DIARIA" multiple required>
+                <md-option ng-value="dia.value" ng-repeat="dia in disponibilidadesDiarias">{{dia.label}}</md-option>
+            </md-select>
+            <div ng-messages="form2.DISPONIBLIDAD_DIARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
 
-<div layout="row">
-    <md-input-container class="md-block" flex>
-        <label>Tipo de contrato</label>
-        <md-select ng-model="selectedToppings" multiple>
-            <md-optgroup label="Meats">
-                <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'meat' }">{{topping.name}}</md-option>
-            </md-optgroup>
-            <md-optgroup label="Veggies">
-                <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'veg' }">{{topping.name}}</md-option>
-            </md-optgroup>
-        </md-select>
-    </md-input-container>
-</div>
+    <div layout="row">
+        <h2><span>Contratación</span></h2>
+    </div>
 
+    <div layout="row">
+        <md-input-container class="md-block" flex="80">
+            <label>Tipo de contrato</label>
+            <md-select ng-model="candidate.TIPO_CONTRATO" id="TIPO_CONTRATO" name="TIPO_CONTRATO" multiple required>
+                <md-option ng-value="tipo.value" ng-repeat="tipo in tiposContrato">{{tipo.label}}</md-option>
+            </md-select>
+            <div ng-messages="form2.TIPO_CONTRATO.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="20">
+            <label>Sueldo bruto anual</label>
+            <input type="number" ng-model="candidate.N_BRUTO_ANUAL" id="N_BRUTO_ANUAL" name="N_BRUTO_ANUAL" required>
+            <div ng-messages="form1.N_BRUTO_ANUAL.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <div layout="row">
+        <h2><span>Información adicional</span></h2>
+    </div>
+
+    <div layout="row">
+        <md-input-container class="md-block" flex="30">
+            <md-checkbox ng-model="candidate.B_VISA_TRABAJO" aria-label="">
+                Visa de trabajo
+            </md-checkbox>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="40">
+            <label>Fin visa de trabajo</label>
+            <md-datepicker ng-model="candidate.F_FIN_VISA_TRABAJO" id="F_FIN_VISA_TRABAJO" name="F_FIN_VISA_TRABAJO"></md-datepicker>
+        </md-input-container>
+    </div>
+
+    <div layout="row" layout-align="space-between none">
+        <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab3')" ng-disabled="!form2.$valid">Siguiente</md-button>
+    </div>
+</form>

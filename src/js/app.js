@@ -6,7 +6,8 @@ angular.module('EulenApp', [
     'ngMessages',
     'ngAnimate',
     'angularMoment',
-    'ngMaterial'
+    'ngMaterial',
+    'md.data.table'
 ])
 
 /* -------
@@ -34,7 +35,11 @@ angular.module('EulenApp', [
         $mdDateLocaleProvider.days = ['domingo', 'lunes', 'martes', 'mi\u00e9rcoles', 'jueves', 'viernes', 's\u00e1bado'];
         $mdDateLocaleProvider.shortDays = ['Dom', 'Lun', 'Mar', 'Mi\u00e9', 'Jue', 'Vie', 'S\u00e1b'];
         $mdDateLocaleProvider.formatDate = function(date) {
-            return moment(date).format('DD/MM/YYYY');
+            return date ?  moment(date).format('DD/MM/YYYY'): '';
+        };
+        $mdDateLocaleProvider.parseDate = function (dateString) {
+            var m = moment(dateString, 'DD/MM/YYYY', true);
+            return m.isValid() ? m.toDate() : new Date(NaN);
         };
     }])
     /* --------------------------------------------
@@ -75,7 +80,34 @@ angular.module('EulenApp', [
                     controller: 'CandidateController'
                 }
             },
-            
+            searchServices: 'SearchServices',
+            QUERY_FIELDS: 'QUERY_FIELDS',
+            resolve: {
+                puestos: function($rootScope, SearchServices, QUERY_FIELDS) {
+                    var params = $rootScope.searchParams;
+                    params.documentClass = 'ABM_AREA_PUESTO';
+                    params.queryFields = QUERY_FIELDS.puestos;
+                    params.maxResults = 100;
+                    params.searchCriterias = [
+                        {
+                            'fieldData': {
+                                'key': 'D_PUESTO',
+                                'value': '%',
+                                'dataType': 'string'
+                            },
+                            'criteria': 'any'
+                        }
+                    ];
+
+                    return SearchServices.getDocumentsByCriterias(params)
+                    .then(function(result) {
+                        return result.documents;
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                    });
+                }
+            }
         })
 
         /* -------
@@ -89,9 +121,6 @@ angular.module('EulenApp', [
                     templateUrl: 'src/templates/login.html',
                     controller: 'LoginController'
                 }
-            },
-            resolve: {
-
             }
         })
 
@@ -170,7 +199,7 @@ angular.module('EulenApp', [
                             count: result.count,
                             documents: result.documents
                         };
-                        
+
                         return petitions;
                     })
                     .catch(function(error) {
@@ -298,7 +327,8 @@ angular.module('EulenApp', [
 
     .run(['$rootScope', '$transitions', '$location',
         function($rootScope, $transitions, $location){
-            $rootScope.adminToken = 'xOir4xDkMmtIVZ3zjmSql5%2FFsmjhSyLugwmCEX3P8g8%3D';
+            $rootScope.adminToken = 'xOir4xDkMmti9vEtlZqdZ64kJxs2xtvy1i0hIXfVcLk%3D';
+            //$rootScope.adminToken = 'xOir4xDkMmv9lYBFMMpXgFQlOewvpaR3UavdR9uJL5XV34BXZkvxVg%3D%3D';
             $rootScope.token = $rootScope.adminToken;
             $rootScope.serverEndpoint = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/thuban-web/';
             $rootScope.showHeaderLogo = true;
