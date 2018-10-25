@@ -1,0 +1,9 @@
+table.md-table .md-row td.md-cell,
+table.md-table .md-row th.md-column {
+    border-bottom: 1px rgba(0,0,0,.12) solid;
+    border-top: none;
+}
+
+table.md-table .md-row:last-child td.md-cell {
+    border-bottom: none;
+}

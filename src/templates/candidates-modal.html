@@ -1,0 +1,41 @@
+<md-dialog aria-label="candidatos">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Candidatos seleccionados para la petición N° {{ctrl.variables.petitionNumber}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                <md-icon class="fa fa-times" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <md-table-container ng-show="ctrl.candidates.length != 0">
+            <table md-table>
+                <thead md-head md-order="D_NOMBRE">
+                    <tr md-row>
+                        <th md-column>Nombre</th>
+                        <th md-column>Nombre</th>
+                        <th md-column>Edad</th>
+                        <th md-column>Sexo</th>
+                        <th md-column></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="candidate in ctrl.candidates">
+                        <td md-cell>{{candidate.D_NOMBRE}}</td>
+                        <td md-cell>{{candidate.D_APELLIDO}}</td>
+                        <td md-cell>{{candidate.N_EDAD}}</td>
+                        <td md-cell>{{candidate.D_SEXO}}</td>
+                        <td style="padding: 0;" md-cell>
+                            <md-button class="md-fab md-mini md-hue-3" aria-label="Ver CV" ng-click="ctrl.showCV(candidate.id)">
+                                <md-tooltip md-direction="bottom">Ver CV</md-tooltip>
+                                <md-icon class="fa fa-eye"></md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </md-dialog-content>
+</md-dialog>

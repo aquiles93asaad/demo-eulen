@@ -51,7 +51,7 @@
         </md-input-container>
 
         <md-input-container class="md-block" flex="15">
-            <md-checkbox ng-model="candidate.B_CERTIFICACION_DISCAPACIDAD" aria-label="">
+            <md-checkbox ng-model="candidate.B_CERTIFICACION_DISCAPACIDAD" ng-true-value="'Si'" ng-false-value="'No'" aria-label="">
                 Discapacidad
             </md-checkbox>
         </md-input-container>
@@ -80,10 +80,10 @@
 
         <md-input-container class="md-block" flex="20">
             <label>Sexo</label>
-            <md-select ng-model="candidate.B_SEXO" id="B_SEXO" name="B_SEXO" required>
+            <md-select ng-model="candidate.D_SEXO" id="D_SEXO" name="D_SEXO" required>
                 <md-option ng-value="genre.value" ng-repeat="genre in genreOptions">{{genre.label}}</md-option>
             </md-select>
-            <div ng-messages="form1.B_SEXO.$error">
+            <div ng-messages="form1.D_SEXO.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
         </md-input-container>
@@ -124,7 +124,7 @@
 
         <md-input-container class="md-block" flex>
             <label>Teléfono</label>
-            <input type="number" ng-model="candidate.N_TELEFONO" id="N_TELEFONO" name="N_TELEFONO" required>
+            <input ng-model="candidate.N_TELEFONO" id="N_TELEFONO" name="N_TELEFONO" required>
             <div ng-messages="form1.N_TELEFONO.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
@@ -132,7 +132,7 @@
 
         <md-input-container class="md-block" flex>
             <label>Teléfono alternativo</label>
-            <input type="number" ng-model="candidate.N_TELEFONO_ALT" id="N_TELEFONO_ALT" name="N_TELEFONO_ALT">
+            <input ng-model="candidate.N_TELEFONO_ALT" id="N_TELEFONO_ALT" name="N_TELEFONO_ALT">
         </md-input-container>
     </div>
 
@@ -153,18 +153,18 @@
 
         <md-input-container class="md-block" flex>
             <label>Provincia</label>
-            <md-select ng-model="candidate.D_PROVINCIA" id="D_PROVINCIA" name="D_PROVINCIA" required>
+            <md-select ng-model="candidate.D_ZONA" id="D_ZONA" name="D_ZONA" required>
                 <md-option ng-value="state.value" ng-repeat="state in states">{{state.label}}</md-option>
             </md-select>
-            <div ng-messages="form1.D_PROVINCIA.$error">
+            <div ng-messages="form1.D_ZONA.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
         </md-input-container>
 
         <md-input-container class="md-block" flex>
             <label>Localidad</label>
-            <input ng-model="candidate.D_LOCALIDAD" id="D_LOCALIDAD" name="D_LOCALIDAD" required>
-            <div ng-messages="form1.D_LOCALIDAD.$error">
+            <input ng-model="candidate.D_SUBZONA" id="D_SUBZONA" name="D_SUBZONA" required>
+            <div ng-messages="form1.D_SUBZONA.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
         </md-input-container>
@@ -181,7 +181,7 @@
 
         <md-input-container class="md-block" flex>
             <label>Codigo Postal</label>
-            <input type="number" ng-model="candidate.N_CP" id="N_CP" name="N_CP" required>
+            <input ng-model="candidate.N_CP" id="N_CP" name="N_CP" required>
             <div ng-messages="form1.N_CP.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
@@ -189,6 +189,6 @@
     </div>
 
     <div layout="row" layout-align="end none">
-        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab2')" ng-disabled="!form1.$valid">Siguiente</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab1')" ng-disabled="!form1.$valid">Siguiente</md-button>
     </div> 
 </form>

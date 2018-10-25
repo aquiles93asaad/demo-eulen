@@ -1,7 +1,9 @@
 <div class="login-container">
     <form class="text-center" ng-submit="login()">
         <div class="img-container">
-            <img src="src/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
+            <a ui-sref="home" itemprop="url" title="Grupo Eulen">
+                <img src="src/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
+            </a>
         </div>
 
         <md-input-container class="md-icon-float md-icon-right md-block">
@@ -21,7 +23,7 @@
         </md-input-container>
 
         <div class="text-center">
-            <md-button class="md-raised md-primary material-button f-montserrat" type="submit">Ingresar</md-button>
+            <md-button class="md-raised  material-button f-montserrat" type="submit">Ingresar</md-button>
         </div>
     </form>
 </div>

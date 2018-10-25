@@ -61,7 +61,7 @@
     </div>
 
     <div layout="row">
-        <md-input-container class="md-block" flex="15">
+        <md-input-container class="md-block" flex="20">
             <label>Otros</label>
             <input ng-model="candidate.D_OTROS" aria-label="D_OTROS" id="D_OTROS" name="D_OTROS" md-maxlength="40" ng-change="setBoolean('D_OTROS')">
             <div ng-messages="form4.D_OTROS.$error">
@@ -279,6 +279,6 @@
 
     <div layout="row" layout-align="space-between none">
         <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
-        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab5')" ng-disabled="!form4.$valid">Siguiente</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab4')" ng-disabled="!form4.$valid">Siguiente</md-button>
     </div>
 </form>

@@ -3,12 +3,14 @@
         <md-content>
             <div layout="row">
                 <md-input-container class="md-block" flex="20">
-                    <label>Cantidad de candidatos</label>
-                    <input type="number" step=".01" ng-model="petition.N_CANTIDAD" id="N_CANTIDAD" name="N_CANTIDAD" required>
+                    <label>Cantidad de recursos</label>
+                    <input type="number" step="1" ng-model="petition.N_CANTIDAD" id="N_CANTIDAD" name="N_CANTIDAD" required ng-change="petition.N_CANTADAD_FALTANTE = petition.N_CANTIDAD">
                     <div ng-messages="petitionForm.N_CANTIDAD.$error">
                         <div ng-message="required">Campo obligatorio</div>
                     </div>
                 </md-input-container>
+
+                <input type="number" ng-model="petition.N_CANTADAD_FALTANTE" id="N_CANTADAD_FALTANTE" name="N_CANTADAD_FALTANTE" hidden>
 
                 <md-input-container class="md-block" flex="80">
                     <label>Local</label>
@@ -80,7 +82,7 @@
             <div layout="row">
                 <md-input-container class="md-block" flex>
                     <label>Disponibilidad horaria</label>
-                    <md-select ng-model="petition.DISPONIBLIDAD_HORARIA" id="DISPONIBLIDAD_HORARIA" name="DISPONIBLIDAD_HORARIA" multiple required>
+                    <md-select ng-model="variables.DISPONIBLIDAD_HORARIA" id="DISPONIBLIDAD_HORARIA" name="DISPONIBLIDAD_HORARIA" multiple required>
                         <md-option ng-value="horario.value" ng-repeat="horario in disponibilidadesHorarias">{{horario.label}}</md-option>
                     </md-select>
                     <div ng-messages="petitionForm.DISPONIBLIDAD_HORARIA.$error">
@@ -92,7 +94,7 @@
             <div layout="row">
                 <md-input-container class="md-block" flex>
                     <label>Disponibilidad diaria</label>
-                    <md-select ng-model="petition.DISPONIBLIDAD_DIARIA" id="DISPONIBLIDAD_DIARIA" name="DISPONIBLIDAD_DIARIA" multiple required>
+                    <md-select ng-model="variables.DISPONIBLIDAD_DIARIA" id="DISPONIBLIDAD_DIARIA" name="DISPONIBLIDAD_DIARIA" multiple required>
                         <md-option ng-value="dia.value" ng-repeat="dia in disponibilidadesDiarias">{{dia.label}}</md-option>
                     </md-select>
                     <div ng-messages="petitionForm.DISPONIBLIDAD_DIARIA.$error">
@@ -134,8 +136,9 @@
                 </md-input-container>
             </div>
 
-            <div layout="row" layout-align="center none">
-                <md-button class="md-raised md-primary material-button f-montserrat" type="submit" ng-disabled="variables.isSubmitting">
+            <div layout="row" layout-align="space-between none">
+                <md-button class="md-raised material-button f-montserrat" ng-click="backToPetitions()">Volver</md-button>
+                <md-button class="md-raised material-button f-montserrat" type="submit" ng-disabled="variables.isSubmitting">
                     Crear Petición
                     <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="variables.isSubmitting"></md-progress-circular>
                 </md-button>

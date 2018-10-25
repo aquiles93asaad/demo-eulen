@@ -7,42 +7,56 @@
                 </md-content>
             </md-tab>
 
-            <md-tab label="Movilidad y Disponibilidad" ng-disabled="variables.tab2">
+            <md-tab label="Disponibilidad" ng-disabled="variables.tab1">
                 <md-content>
                     <div ng-include="'src/templates/candidate/movilidad-y-disponibilidad.html'"></div>
                 </md-content>
             </md-tab>
 
-            <md-tab label="Formación" ng-disabled="variables.tab3">
+            <md-tab label="Formación" ng-disabled="variables.tab2">
                 <md-content>
                     <div ng-include="'src/templates/candidate/formacion.html'"></div>
                 </md-content>
             </md-tab>
 
-            <md-tab label="Informática e Idiomas" ng-disabled="variables.tab4">
+            <md-tab label="Informática e Idiomas" ng-disabled="variables.tab3">
                 <md-content>
                     <div ng-include="'src/templates/candidate/informatica-e-idiomas.html'"></div>
                 </md-content>
             </md-tab>
 
-            <md-tab label="Experiencia Profesional" ng-disabled="variables.tab5">
+            <md-tab label="Experiencia Profesional" ng-disabled="variables.tab4">
                 <md-content>
-                    <div ng-include="'src/templates/candidate/Experiencia-profesional.html'"></div>
+                    <div ng-include="'src/templates/candidate/experiencia-profesional.html'"></div>
                 </md-content>
             </md-tab>
 
             <md-tab label="Adjuntar CV" ng-disabled="variables.tab5">
                 <md-content>
-                    <form ng-cloak name="form6" novalidate>
-                        <div layout="row">
-                            <md-input-container class="md-block" flex="60">
-                                <input class="file-input" name="cv" type="file" id="cv" ng-model="variables.cv" required ng-change="changeCV(event.target)"/>
-                            </md-input-container>
+                    <form ng-cloak name="form6" novalidate style="margin-top: 30px;">
+                        <div layout="column" layout-align="center center">
+                            <div layout="row" layout-align="center center" flex>
+                                <label for="cv" class="md-button material-button f-montserrat md-raised">
+                                    Adjuntar CV
+                                    <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="variables.loadingFile"></md-progress-circular>
+                                </label>
+                            </div>
+                            <div layout="row" layout-align="center center" flex>
+                                <input ng-model="variables.cv" class="ng-hide" type="file" name="cv" id="cv" required onchange="angular.element(this).scope().changeCV(event.target)"/>
+                                <div class="hint" ng-if="!fileName">Solo se permite adjuntar archivo PDF</div>
+                                <div class="hint" ng-if="fileName">{{fileName}}</div>
+                                <div ng-messages="form6.cv.$error">
+                                    <div ng-message="required"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <div layout="row" layout-align="space-between none">
                             <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
-                            <md-button class="md-raised material-button f-montserrat" ng-click="createCandidate()" ng-disabled="!form6.$valid">Postularse</md-button>
+                            <md-button class="md-raised material-button f-montserrat" ng-click="createCandidate()" ng-disabled="!form6.$valid || variables.isSubmitting">
+                                Postularse
+                                <md-progress-circular md-mode="indeterminate" md-diameter="20px" ng-show="variables.isSubmitting"></md-progress-circular>
+                            </md-button>
                         </div>
                     </form>
                 </md-content>

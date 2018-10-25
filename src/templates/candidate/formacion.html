@@ -12,19 +12,30 @@
     </div>
     
     <div layout="row">
-        <md-input-container class="md-block" flex="70">
-            <label>Formacion primaria</label>
-            <input ng-model="candidate.D_FORM_PRIMARIA" id="D_FORM_PRIMARIA" name="D_FORM_PRIMARIA" ng-required="candidate.B_SIN_FORMACION == 'No'" md-maxlength="40" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
-            <div ng-messages="form3.D_FORM_PRIMARIA.$error">
-                <div ng-message="required">Campo obligatorio</div>
-                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
-            </div>
+        <md-input-container class="md-block" flex="20">
+            <md-checkbox ng-model="candidate.D_FORM_PRIMARIA" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+                Formacion primaria
+            </md-checkbox>
         </md-input-container>
 
-        <md-input-container class="md-block" flex>
+        <md-input-container class="md-block" flex="30">
             <label>Fin estudios primarios</label>
             <md-datepicker ng-model="candidate.F_FIN_PRIMARIA" id="F_FIN_PRIMARIA" name="F_FIN_PRIMARIA" ng-required="candidate.B_SIN_FORMACION == 'No'" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
             <div ng-messages="form3.F_FIN_PRIMARIA.$error">
+                <div ng-message="required">Campo obligatorio</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="20">
+            <md-checkbox ng-model="candidate.B_FORM_SECUNDARIA" aria-label="" ng-true-value="'Si'" ng-false-value="'No'" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
+                Formacion secundaria
+            </md-checkbox>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex="30">
+            <label>Fin estudios secundaria</label>
+            <md-datepicker ng-model="candidate.F_FIN_SECUNDARIA" id="F_FIN_SECUNDARIA" name="F_FIN_SECUNDARIA" ng-required="candidate.B_FORM_SECUNDARIA == 'Si'" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
+            <div ng-messages="form3.F_FIN_SECUNDARIA.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
         </md-input-container>
@@ -44,25 +55,6 @@
             <label>Fin ciclo formativo</label>
             <md-datepicker ng-model="candidate.F_FIN_FORMATIVO" id="F_FIN_FORMATIVO" name="F_FIN_FORMATIVO" ng-required="candidate.D_CICLO_FORMATIVO != null && candidate.D_CICLO_FORMATIVO != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
             <div ng-messages="form3.F_FIN_FORMATIVO.$error">
-                <div ng-message="required">Campo obligatorio</div>
-            </div>
-        </md-input-container>
-    </div>
-
-    <div layout="row">
-        <md-input-container class="md-block" flex="70">
-            <label>Titulo secundaria</label>
-            <input ng-model="candidate.D_FORM_SECUNDARIA" id="D_FORM_SECUNDARIA" name="D_FORM_SECUNDARIA" md-maxlength="40" ng-change="setBoolean('D_FORM_SECUNDARIA')" ng-disabled="candidate.B_SIN_FORMACION == 'Si'">
-            <div ng-messages="form3.D_FORM_SECUNDARIA.$error">
-                <div ng-message="required">Campo obligatorio</div>
-                <div ng-message="md-maxlength">Máximo 40 caracteres</div>
-            </div>
-        </md-input-container>
-
-        <md-input-container class="md-block" flex>
-            <label>Fin estudios secundaria</label>
-            <md-datepicker ng-model="candidate.F_FIN_SECUNDARIA" id="F_FIN_SECUNDARIA" name="F_FIN_SECUNDARIA" ng-required="candidate.D_FORM_SECUNDARIA != null && candidate.D_FORM_SECUNDARIA != ''" ng-disabled="candidate.B_SIN_FORMACION == 'Si'"></md-datepicker>
-            <div ng-messages="form3.F_FIN_SECUNDARIA.$error">
                 <div ng-message="required">Campo obligatorio</div>
             </div>
         </md-input-container>
@@ -127,6 +119,6 @@
 
     <div layout="row" layout-align="space-between none">
         <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
-        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab4')" ng-disabled="!form3.$valid">Siguiente</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab3')" ng-disabled="!form3.$valid">Siguiente</md-button>
     </div>
 </form>

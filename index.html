@@ -19,17 +19,25 @@
         <link rel="stylesheet" href="src/css/home.css">
         <link rel="stylesheet" href="src/css/login.css">
         <link rel="stylesheet" href="src/css/material.css">
+        <link rel="stylesheet" href="src/css/petitions.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,600,700" rel="stylesheet">
     </head>
 
     <body ng-app="EulenApp">
         <div class="page">
-            <header class="container" id="header">
+            <header class="container" id="header" style="padding-right: 0;">
                 <div class="site-branding" ng-show="$root.showHeaderLogo">
                     <a ui-sref="home" itemprop="url" title="Grupo Eulen">
                         <img src="src/images/logo_menu2x.png" width="190" alt="Grupo Eulen" itemprop="logo" />
                     </a>
+                </div>
+
+                <div class="logout" ng-show="$root.userToken != null" style="float: right; margin-top: 50px; margin-right: 5px;">
+                    <md-button class="md-fab md-mini md-hue-3" aria-label="Salir" ng-click="logout()">
+                        <md-tooltip md-direction="bottom">Salir</md-tooltip>
+                        <md-icon class="fa fa-sign-out"></md-icon>
+                    </md-button>
                 </div>
             </header>
 
@@ -56,6 +64,7 @@
         <script type="text/javascript" src="node_modules/angular-messages/angular-messages.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-touch/angular-touch.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-material/angular-material.min.js"></script>
+        <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
         <script type="text/javascript" src="node_modules/angular-moment/angular-moment.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
@@ -75,6 +84,7 @@
         <script type="text/javascript" src="src/js/services/DocumentServices.js"></script>
         <script type="text/javascript" src="src/js/services/ResourceServices.js"></script>
         <script type="text/javascript" src="src/js/services/SearchServices.js"></script>
+        <script type="text/javascript" src="src/js/services/UserServices.js"></script>
 
         <!-- directives -->
         <script type="text/javascript" src="src/js/directives/content-height.directive.js"></script>

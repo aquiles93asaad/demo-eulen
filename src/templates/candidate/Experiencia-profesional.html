@@ -8,6 +8,7 @@
                 <label>Experiencia</label>
                 <input ng-model="candidate.D_EXPERIENCIA_0" id="D_EXPERIENCIA_0" name="D_EXPERIENCIA_0" ng-change="setBoolean('D_EXPERIENCIA_0')">
             </md-input-container>
+
             <md-input-container class="md-block" flex="40">
                 <label>Funcion</label>
                 <input ng-model="candidate.D_FUNCIONES_0" id="D_FUNCIONES_0" name="D_FUNCIONES_0" ng-required="candidate.B_EXPERIENCIA_0 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_0 == 'No'">
@@ -20,7 +21,7 @@
         <div layout="row">
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de inicio</label>
-                <md-datepicker ng-model="F_FECHA_COMIENZO_0" id="F_FECHA_COMIENZO_0" name="F_FECHA_COMIENZO_0" ng-required="candidate.B_EXPERIENCIA_0 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_0 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_COMIENZO_0" id="F_FECHA_COMIENZO_0" name="F_FECHA_COMIENZO_0" ng-required="candidate.B_EXPERIENCIA_0 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_0 == 'No'"></md-datepicker>
                 <div ng-messages="form5.F_FECHA_COMIENZO_0.$error">
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
@@ -28,7 +29,7 @@
 
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de fin</label>
-                <md-datepicker ng-model="F_FECHA_FIN_0" id="F_FECHA_FIN_0" name="F_FECHA_FIN_0" ng-disabled="candidate.B_EXPERIENCIA_0 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_FIN_0" id="F_FECHA_FIN_0" name="F_FECHA_FIN_0" ng-disabled="candidate.B_EXPERIENCIA_0 == 'No'"></md-datepicker>
             </md-input-container>
         </div>
     </div>
@@ -39,7 +40,7 @@
                 <span>Experiencia laboral 2</span>
                 <md-button class="md-fab md-mini md-hue-3" aria-label="Eliminar experiencia" ng-click="deleteProfession('1')">
                     <md-tooltip md-direction="right">Eliminar experiencia</md-tooltip>
-                    <md-icon class="fa fa-minus" style="margin-top: 10px;"></md-icon>
+                    <md-icon class="fa fa-minus" ></md-icon>
                 </md-button>
             </h4>
         </div>
@@ -61,7 +62,7 @@
         <div layout="row">
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de inicio</label>
-                <md-datepicker ng-model="F_FECHA_COMIENZO_1" id="F_FECHA_COMIENZO_1" name="F_FECHA_COMIENZO_1" ng-required="candidate.B_EXPERIENCIA_1 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_1 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_COMIENZO_1" id="F_FECHA_COMIENZO_1" name="F_FECHA_COMIENZO_1" ng-required="candidate.B_EXPERIENCIA_1 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_1 == 'No'"></md-datepicker>
                 <div ng-messages="form5.F_FECHA_COMIENZO_1.$error">
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
@@ -69,7 +70,7 @@
 
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de fin</label>
-                <md-datepicker ng-model="F_FECHA_FIN_1" id="F_FECHA_FIN_1" name="F_FECHA_FIN_1" ng-disabled="candidate.B_EXPERIENCIA_1 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_FIN_1" id="F_FECHA_FIN_1" name="F_FECHA_FIN_1" ng-disabled="candidate.B_EXPERIENCIA_1 == 'No'"></md-datepicker>
             </md-input-container>
         </div>
     </div>
@@ -80,7 +81,7 @@
                 <span>Experiencia laboral 3</span>
                 <md-button class="md-fab md-mini md-hue-3" aria-label="Eliminar experiencia" ng-click="deleteProfession('2')">
                     <md-tooltip md-direction="right">Eliminar experiencia</md-tooltip>
-                    <md-icon class="fa fa-minus" style="margin-top: 10px;"></md-icon>
+                    <md-icon class="fa fa-minus" ></md-icon>
                 </md-button>
             </h4>
         </div>
@@ -101,7 +102,7 @@
         <div layout="row">
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de inicio</label>
-                <md-datepicker ng-model="F_FECHA_COMIENZO_2" id="F_FECHA_COMIENZO_2" name="F_FECHA_COMIENZO_2" ng-required="candidate.B_EXPERIENCIA_2 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_2 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_COMIENZO_2" id="F_FECHA_COMIENZO_2" name="F_FECHA_COMIENZO_2" ng-required="candidate.B_EXPERIENCIA_2 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_2 == 'No'"></md-datepicker>
                 <div ng-messages="form5.F_FECHA_COMIENZO_2.$error">
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
@@ -109,7 +110,7 @@
 
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de fin</label>
-                <md-datepicker ng-model="F_FECHA_FIN_2" id="F_FECHA_COMIENZO_2" name="F_FECHA_COMIENZO_2" ng-disabled="candidate.B_EXPERIENCIA_2 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_FIN_2" id="F_FECHA_COMIENZO_2" name="F_FECHA_COMIENZO_2" ng-disabled="candidate.B_EXPERIENCIA_2 == 'No'"></md-datepicker>
             </md-input-container>
         </div>
     </div>
@@ -120,7 +121,7 @@
                 <span>Experiencia laboral 4</span>
                 <md-button class="md-fab md-mini md-hue-3" aria-label="Eliminar experiencia" ng-click="deleteProfession('3')">
                     <md-tooltip md-direction="right">Eliminar experiencia</md-tooltip>
-                    <md-icon class="fa fa-minus" style="margin-top: 10px;"></md-icon>
+                    <md-icon class="fa fa-minus" ></md-icon>
                 </md-button>
             </h4>
         </div>
@@ -142,7 +143,7 @@
         <div layout="row">
             <md-input-container class="md-block" flex="50">
                 <label>Fecha de inicio</label>
-                <md-datepicker ng-model="F_FECHA_COMIENZO_3" id="F_FECHA_COMIENZO_3" name="F_FECHA_COMIENZO_3" ng-required="candidate.B_EXPERIENCIA_3 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_3 == 'No'"></md-datepicker>
+                <md-datepicker ng-model="candidate.F_FECHA_COMIENZO_3" id="F_FECHA_COMIENZO_3" name="F_FECHA_COMIENZO_3" ng-required="candidate.B_EXPERIENCIA_3 == 'Si'" ng-disabled="candidate.B_EXPERIENCIA_3 == 'No'"></md-datepicker>
                 <div ng-messages="form5.F_FECHA_COMIENZO_3.$error">
                     <div ng-message="required">Campo obligatorio</div>
                 </div>
@@ -158,12 +159,12 @@
     <div layout="row" layout-align="center center" ng-show="variables.professions < 3">
         <md-button class="md-fab md-mini md-hue-3" aria-label="Nueva Profesión" ng-click="addProfession()">
             <md-tooltip md-direction="bottom">Agregar experiencia laboral</md-tooltip>
-            <md-icon class="fa fa-plus" style="margin-top: 10px;"></md-icon>
+            <md-icon class="fa fa-plus" ></md-icon>
         </md-button>
     </div>
 
     <div layout="row" layout-align="space-between none">
         <md-button class="md-raised material-button f-montserrat" ng-click="previousTab()">Volver</md-button>
-        <md-button class="md-raised material-button f-montserrat" ng-click="createCandidate()" ng-disabled="!form5.$valid">Postularse</md-button>
+        <md-button class="md-raised material-button f-montserrat" ng-click="nextTab('tab5')" ng-disabled="!form5.$valid">Siguiente</md-button>
     </div>
 </form>

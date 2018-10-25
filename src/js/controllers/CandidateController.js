@@ -2,23 +2,30 @@
 
 angular.module('EulenApp')
 
-.controller('CandidateController', ['$scope', '$state', 'puestos',
-    function ($scope, $state, puestos){
+.controller('CandidateController', ['$scope', '$state', '$mdToast', 'puestos', 'DocumentServices',
+    function ($scope, $state, $mdToast, puestos, DocumentServices){
         /* Scope variables */
         $scope.variables = {
             tab: 0,
-            maxTabs: 4,
+            maxTabs: 5,
+            isSubmitting: false,
+            loadingFile: false,
             birthMaxDate: moment().subtract(18, 'years'),
-            tab2: 'true',
-            tab3: 'true',
-            tab4: 'true',
-            tab5: 'true',
-            tab6: 'true',
+            tab1: true,
+            tab2: true,
+            tab3: true,
+            tab4: true,
+            tab5: true,
             professions: 0,
             exp2: false,
             exp3: false,
             exp4: false,
-            cv: null
+            cv: null,
+            fileName: null,
+            DISPONIBLIDAD_HORARIA: null,
+            DISPONIBLIDAD_DIARIA: null,
+            TIPO_CONTRATO: null,
+            PUESTOS: null
         };
 
         $scope.documentOptions = [
@@ -199,8 +206,8 @@ angular.module('EulenApp')
             N_IDENTIDAD: null,
             N_SEGURIDAD_SOCIALD: null,
             D_PAIS: 'España',
-            D_PROVINCIA: null,
-            D_LOCALIDAD: null,
+            D_ZONA: null,
+            D_SUBZONA: null,
             D_DOMICILIO: null,
             N_CP: null,
             D_MAIL: null,
@@ -220,9 +227,6 @@ angular.module('EulenApp')
             B_VISA_TRABAJO: 'No',
             F_FIN_VISA_TRABAJO: null,
             D_MEDIO_CONVOCATORIA: null,
-            DISPONIBLIDAD_HORARIA: null,
-            DISPONIBLIDAD_DIARIA: null,
-            TIPO_CONTRATO: null,
             N_BRUTO_ANUAL: null,
             B_DISPO_MANANA: 'No',
             B_DISPO_TARDE: 'No',
@@ -243,20 +247,20 @@ angular.module('EulenApp')
             B_TIEMPO_TRES_MES: 'No',
             B_TIEMPO_PERMANENTE: 'No',
             B_SIN_FORMACION: 'No',
-            B_FORM_PRIMARIA: 'No',
-            B_CICLO_FORMATIVO: 'No',
-            B_FORM_SECUNDARIA: 'No',
-            B_FORM_UNIVERSITARIA: 'No',
-            B_CERTIFICACION: 'No',
-            B_COMPLEMENTARIA: 'No',
+            D_FORM_PRIMARIA: 'No',
             F_FIN_PRIMARIA: null,
+            B_CICLO_FORMATIVO: 'No',
             D_CICLO_FORMATIVO: null,
             F_FIN_FORMATIVO: null,
+            B_FORM_SECUNDARIA: 'No',
             F_FIN_SECUNDARIA: null,
+            B_FORM_UNIVERSITARIA: 'No',
             D_FORM_UNIVERSITARIA: null,
             F_FIN_UNIVERSITARIO: null,
+            B_CERTIFICACION: 'No',
             D_CERTIFICACION: null,
             F_FIN_CERTIFICACION: null,
+            B_COMPLEMENTARIA: 'No',
             D_COMPLEMENTARIA: null,
             F_FIN_COMPLEMENTARIA: null,
             B_ESPANOL: 'No',
@@ -295,30 +299,35 @@ angular.module('EulenApp')
             D_EXPERIENCIA_0: null,
             D_FUNCIONES_0: null,
             F_FECHA_COMIENZO_0: null,
+            F_FECHA_FIN_0: null,
             B_EXPERIENCIA_1: 'No',
             D_EXPERIENCIA_1: null,
             D_FUNCIONES_1: null,
             F_FECHA_COMIENZO_1: null,
+            F_FECHA_FIN_1: null,
             B_EXPERIENCIA_2: 'No',
             D_EXPERIENCIA_2: null,
             D_FUNCIONES_2: null,
             F_FECHA_COMIENZO_2: null,
+            F_FECHA_FIN_2: null,
             B_EXPERIENCIA_3: 'No',
             D_EXPERIENCIA_3: null,
             D_FUNCIONES_3: null,
             F_FECHA_COMIENZO_3: null,
+            F_FECHA_FIN_3: null,
             B_CERTIFICACION_DISCAPACIDAD: 'No',
             D_PUESTO1: null,
             D_PUESTO2: null,
             D_PUESTO3: null,
-            PUESTOS: null
+            D_SITUACION_ACTUAL: 'CV recibido',
+            F_POSTULACION: null
         };
         /*****************/
 
         /* Scope functions */
         $scope.nextTab = function(formEnable) {
             $scope.variables.tab++;
-            $scope.variables[formEnable] = 'false';
+            $scope.variables[formEnable] = false;
         };
 
         $scope.previousTab = function() {
@@ -331,7 +340,7 @@ angular.module('EulenApp')
 
         $scope.$watch('candidate.PUESTOS', function(newValue, oldValue) {
             if (newValue && newValue.length > 3) {
-                $scope.candidate.PUESTOS = oldValue;
+                $scope.variables.PUESTOS = oldValue;
             }
         });
 
@@ -380,6 +389,89 @@ angular.module('EulenApp')
             $scope.candidate['F_FECHA_FIN_' + n] = null;
         };
 
+        $scope.changeCV = function(element) {
+            $scope.variables.loadingFile = true;
+            $scope.variables.cv = element;
+            if(element.files && element.files[0]) {
+                var reader = new FileReader();
+                var file = element.files[0];
+                $scope.$apply(function () {
+                    $scope.fileName = file.name;
+                });
+    
+                reader.addEventListener("load", function () {
+                    var isPdf = reader.result.substring(5, reader.result.indexOf(';base64'));
+                    if(isPdf == 'application/pdf'){
+                        var stream = reader.result.substring(reader.result.indexOf(';base64,') + 8, reader.result.length);
+                        $scope.variables.cv = stream;
+                        $scope.variables.fileName = $scope.fileName;
+                    } else {
+                        $scope.variables.cv = null;
+                        $scope.variables.fileName = null;
+                        $mdToast.show(
+                            $mdToast.simple()
+                            .textContent('El archivo adjunto debe ser de formato PDF!')
+                            .position('top right')
+                            .hideDelay(3000)
+                        );
+                    }
+                }, false);
+
+                reader.onloadend = function() {
+                    if(reader.readyState == 2) {
+                        $scope.$apply(function () {
+                            $scope.variables.loadingFile = false;
+                        });
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        $scope.createCandidate = function() {
+            $scope.variables.isSubmitting = true;
+            processMultipleSelect($scope.variables.DISPONIBLIDAD_DIARIA);
+            processMultipleSelect($scope.variables.DISPONIBLIDAD_HORARIA);
+            processMultipleSelect($scope.variables.TIPO_CONTRATO);
+            for (var i = 0; i < $scope.variables.PUESTOS.length; i++) {
+                $scope.candidate['D_PUESTO' + (i+1)] = $scope.variables.PUESTOS[i];
+            }
+            $scope.candidate.F_POSTULACION = moment();
+            var fields = processCandidateFields();
+
+            var params = {
+                'documentClass': 'LEGAJO_CANDIDATO',
+                'fields': fields,
+                'resource': {
+                    'extension': 'pdf',
+                    'stream': $scope.variables.cv
+                }
+            };
+
+            DocumentServices.createDocument(params)
+            .then(function(result) {
+                $scope.variables.isSubmitting = false;
+
+                $mdToast.show(
+                    $mdToast.simple()
+                    .textContent('Gracias por postularse')
+                    .position('top right')
+                    .hideDelay(3000)
+                );
+
+                $state.go('home');
+            })
+            .catch(function(error) {
+                $scope.variables.isSubmitting = false;
+                $mdToast.show(
+                    $mdToast.simple()
+                    .textContent('No se pudo crear la postulación. Pruebe de vuelta en un momento.')
+                    .position('top right')
+                    .hideDelay(3000)
+                );
+                console.log(error);
+            });
+        };
         /*******************/
         
         /* Private fucntions */
@@ -410,6 +502,49 @@ angular.module('EulenApp')
             angular.forEach(areasObject, function(area, d_area) {
                 $scope.areas.push(area);
             });
+        }
+
+        function processMultipleSelect(selectedOptions) {
+            if(selectedOptions) {
+                for (var i = 0; i < selectedOptions.length; i++) {
+                    $scope.candidate[selectedOptions[i]] = 'Si';
+                }
+            }
+        }
+
+        function processCandidateFields() {
+            var fields = [];
+            angular.forEach($scope.candidate, function(value, key) {
+                var dataType = getDataType(key);
+                var field = {
+                    'key':  key,
+                    'value': (dataType == 'date') ? moment(value).format('YYYYMMDD HH:mm:ss') : value,
+                    'dataType': (value != null ) ? dataType : 'null'
+                }
+                fields.push(field);
+            });
+
+            return fields;
+        }
+
+        function getDataType(key) {
+            var letter = key[0];
+            var name = key.substring(key.indexOf('_') + 1, key.length);
+
+            if(letter == 'D' || letter == 'B') {
+                return 'string';
+            } else if(letter == 'F') {
+                return 'date';
+            } else if(letter == 'C') {
+                return 'integer';
+            } else if(letter == 'N') {
+                if(name == 'BRUTO_ANUAL') {
+                    return 'decimal';
+                } else if(name == 'TELEFONO' || name == 'TELEFONO_ALT' || name == 'CP' || name == 'IDENTIDAD') {
+                    return 'string';
+                }
+                return 'integer';
+            }
         }
         /*********************/
     }

@@ -29,11 +29,11 @@ angular.module('EulenApp')
             })
             .then(function(response) {
                 if (response.data.codRet == WS_SUC_COD_RET) {
-                    var extension = angular.lowercase(response.data.resource.extension);
+                    var extension = response.data.resource.extension;
                     var result = {
                         type: '',
                         stream: response.data.resource.stream,
-                        extension: angular.lowercase(extension)
+                        extension: extension
                     };
 
                     if(extension == 'png') {

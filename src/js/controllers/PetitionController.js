@@ -7,7 +7,9 @@ angular.module('EulenApp')
         /* Scope variables */
         $scope.variables = {
             isSubmitting: false,
-            D_PUESTO: null
+            D_PUESTO: null,
+            DISPONIBLIDAD_HORARIA: null,
+            DISPONIBLIDAD_DIARIA: null,
         };
         
         $scope.genreOptions = [
@@ -54,6 +56,7 @@ angular.module('EulenApp')
 
         $scope.petition = {
             N_CANTIDAD: null,
+            N_CANTADAD_FALTANTE: null,
             F_PETICION: null,
             D_SOLICITANTE: $rootScope.userID,
             D_CLIENTE: data.client.D_CLIENTE,
@@ -75,8 +78,6 @@ angular.module('EulenApp')
             C_PUESTO: null,
             F_ESTIMADA_INGRESO: null,
             D_OBSERVACIONES_CLIENTE: null,
-            DISPONIBLIDAD_HORARIA: null,
-            DISPONIBLIDAD_DIARIA: null,
             B_DISPO_MANANA: 'No',
             B_DISPO_TARDE: 'No',
             B_DISPO_NOCHE: 'No',
@@ -117,10 +118,8 @@ angular.module('EulenApp')
         $scope.createPetition = function(form) {
             if(form.$valid) {
                 $scope.variables.isSubmitting = true;
-                processMultipleSelect($scope.petition.DISPONIBLIDAD_HORARIA);
-                processMultipleSelect($scope.petition.DISPONIBLIDAD_DIARIA);
-                delete $scope.petition.DISPONIBLIDAD_HORARIA;
-                delete $scope.petition.DISPONIBLIDAD_DIARIA;
+                processMultipleSelect($scope.variables.DISPONIBLIDAD_HORARIA);
+                processMultipleSelect($scope.variables.DISPONIBLIDAD_DIARIA);
                 $scope.petition.F_PETICION = moment();
                 var fields = processPetitionFields();
 
@@ -144,22 +143,24 @@ angular.module('EulenApp')
                 })
                 .then(function(result) {
                     $scope.variables.isSubmitting = false;
-                    $scope.showSimpleToast = function() {
-                        var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                        $mdToast.simple()
+                        .textContent('La petición fue creada correctamente!')
+                        .position('top right')
+                        .hideDelay(3000)
+                    );
                     
-                        $mdToast.show(
-                            $mdToast.simple()
-                            .textContent('La petición fue creada correctamente!')
-                            .position('top right')
-                            .hideDelay(3000)
-                        );
-                    };
+                    $state.go('petitions');
                 })
                 .catch(function(error) {
                     $scope.variables.isSubmitting = false;
                     console.log(error);
                 });
             }
+        };
+
+        $scope.backToPetitions = function() {
+            $state.go('petitions');
         };
         /*******************/
         

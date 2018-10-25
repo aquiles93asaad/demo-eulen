@@ -2,7 +2,12 @@
 
 angular.module('EulenApp')
 
-.controller('AppController', ['$rootScope', 
-    function ($rootScope) {
+.controller('AppController', ['$scope', '$rootScope', '$state',
+    function ($scope, $rootScope, $state) {
+        $rootScope.logout = function() {
+            $rootScope.userToken = null;
+            $rootScope.userID = null;
+            $state.go('home');
+        }
     }
 ])

@@ -11,30 +11,51 @@
     </div>
 </md-toolbar>
 
-<md-table-container>
+<div layout="row" layout-align="center center" ng-if="petitions.length == 0">
+    <h3 class="f-montserrat">No tiene peticiones.</h3>
+</div>
+
+<md-table-container ng-show="petitions.length != 0">
     <table md-table md-progress="promise">
-        <thead md-head>
+        <thead md-head md-order="N_PETICION">
             <tr md-row>
-                <th md-column md-numeric><span>N° Petición</span></th>
-                <th md-column md-order-by="calories.value"><span>Fecha de petición</span></th>
+                <th md-column>N° Petición</th>
+                <th md-column>Fecha de petición</th>
                 <th md-column>Local</th>
-                <th md-column>Fecha Inicio</th>
-                <th md-column>Estado Petición</th>
-                <th md-column>acciones</th>
+                <th md-column>Fecha estimada de ingreso</th>
+                <th md-column>Fecha inicio</th>
+                <th md-column>Estado petición</th>
+                <th md-column>Acciones</th>
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row ng-repeat="petition in petitions.documents">
+            <tr md-row ng-repeat="petition in petitions">
                 <td md-cell>{{petition.N_PETICION}}</td>
-                <td md-cell>{{petition.F_PETICION}}</td>
+                <td md-cell>{{petition.F_PETICION | date: 'dd/MM/yyyy' }}</td>
                 <td md-cell>{{petition.D_LOCAL}}</td>
-                <td md-cell>{{petition.F_INICIO}}</td>
+                <td md-cell>{{petition.F_ESTIMADA_INGRESO | date: 'dd/MM/yyyy' }}</td>
+                <td md-cell>{{petition.F_INICIO | date: 'dd/MM/yyyy' }}</td>
                 <td md-cell>{{petition.D_ESTADO_SOLICITUD}}</td>
-                <td>Hola</td>
+                <td style="padding: 0;" md-cell>
+                    <md-button class="md-fab md-mini md-hue-3" aria-label="Aceptar candidatos" ng-click="acceptPetition(petition.N_PETICION)" style="background-color: #5cb85c !important;" ng-if="petition.B_VALIDACION_MOD == 'Si' && petition.D_ESTADO_SOLICITUD == 'Validación MOD'">
+                        <md-tooltip md-direction="bottom">Aceptar candidatos</md-tooltip>
+                        <md-icon class="fa fa-check"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-fab md-mini md-hue-3" aria-label="Rechazar candidatos" ng-click="askForNote($event, petition.N_PETICION)" style="background-color: #d9534f !important;" ng-if="petition.B_VALIDACION_MOD == 'Si' && petition.D_ESTADO_SOLICITUD == 'Validación MOD'">
+                        <md-tooltip md-direction="bottom">Rechazar candidatos</md-tooltip>
+                        <md-icon class="fa fa-times"></md-icon>
+                    </md-button>
+
+                    <md-button class="md-fab md-mini md-hue-3" aria-label="Ver candidatos" ng-click="getCandidates($event, petition.N_PETICION)" ng-if="petition.B_VALIDACION_MOD == 'Si' && petition.D_ESTADO_SOLICITUD != 'Asignar TS' && petition.D_ESTADO_SOLICITUD != 'Reclutamiento' && petition.D_ESTADO_SOLICITUD != 'Selección'">
+                        <md-tooltip md-direction="bottom">Ver candidatos</md-tooltip>
+                        <md-icon class="fa fa-eye"></md-icon>
+                    </md-button>
+                </td>
             </tr>
         </tbody>
     </table>
 </md-table-container>
 
-<md-table-pagination md-limit="15" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{petitions.count}}"
-    md-on-paginate="getDesserts" md-page-select md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"></md-table-pagination>
+<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{variables.count}}"
+    md-on-paginate="getPetitions" md-page-select md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" ng-show="petitions.length != 0"></md-table-pagination>
